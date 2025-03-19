@@ -7,6 +7,7 @@ public class MobileLook : MonoBehaviour
     // References
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private VirtualJoystick joystick;
 
     // Player settings
     [SerializeField] private float cameraSensitivity;
@@ -149,9 +150,7 @@ public class MobileLook : MonoBehaviour
         // Don't move if the touch delta is shorter than the designated dead zone
         if (moveInput.sqrMagnitude <= moveInputDeadZone) return;
 
-        // Multiply the normalized direction by the speed
-        Vector2 movementDirection = moveInput.normalized * moveSpeed * Time.deltaTime;
-        // Move relatively to the local transform's direction
+        Vector2 movementDirection = joystick.inputDirection * moveSpeed * Time.deltaTime;
         characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
     }
 
