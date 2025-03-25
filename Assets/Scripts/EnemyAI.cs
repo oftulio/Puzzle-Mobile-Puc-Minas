@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
+    public Texture2D faceTexture; // Defina a imagem do rosto desse inimigo no Inspector
     public Transform[] waypoints; // Array de pontos de patrulha
     public float waitTimeFirst = 20f; // Tempo de espera no primeiro ponto
     public float waitTimeOthers = 10f; // Tempo de espera nos outros pontos

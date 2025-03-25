@@ -11,6 +11,8 @@ public class MordomoScript : MonoBehaviour
     public float fieldOfViewAngle = 90f; // Ângulo do campo de visão
     public float detectionRange = 10f; // Distância de detecção do player
     public LayerMask playerLayer; // Layer do player
+    public Texture faceSprite; // Defina a imagem do rosto desse inimigo no Inspector
+
 
     private NavMeshAgent agent;
     private int currentWaypointIndex = 0;
