@@ -1,0 +1,10 @@
+# ninja log v5
+57	2367	7648804164811324	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	253bea556cc855d8
+17	2397	7648804164826376	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	54778aeeb96896e4
+0	2402	7648804164861996	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	fb5b150ce15814df
+45	2487	7648804166094894	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ec9536db28b0a0db
+94	2637	7648804167563378	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	543e3df705f97b87
+107	2827	7648804169490126	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	3d73e846be3d8e0
+31	3039	7648804171585827	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	6b81e99a3549e321
+78	3043	7648804171621088	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8142871894d18013
+3044	3214	7648804173439663	E:/Puzzle-Mobile-Puc-Minas/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6i2f3p6v/obj/arm64-v8a/libgame.so	76c6d69901ba8c20

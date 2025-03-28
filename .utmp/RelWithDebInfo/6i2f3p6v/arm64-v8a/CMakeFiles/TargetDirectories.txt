@@ -1,0 +1,5 @@
+E:/Puzzle-Mobile-Puc-Minas/.utmp/RelWithDebInfo/6i2f3p6v/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/Puzzle-Mobile-Puc-Minas/.utmp/RelWithDebInfo/6i2f3p6v/arm64-v8a/CMakeFiles/rebuild_cache.dir
+E:/Puzzle-Mobile-Puc-Minas/.utmp/RelWithDebInfo/6i2f3p6v/arm64-v8a/GameActivity/CMakeFiles/game.dir
+E:/Puzzle-Mobile-Puc-Minas/.utmp/RelWithDebInfo/6i2f3p6v/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+E:/Puzzle-Mobile-Puc-Minas/.utmp/RelWithDebInfo/6i2f3p6v/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
