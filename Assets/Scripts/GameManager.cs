@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     //variavel estatica para o GameManger
     public static GameManager ins;
+    public GameObject ButtonPiano;
 
     //Variavel para recber o script atual
     [HideInInspector]
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         ins = this;
+    }
+    void Start()
+    {
+        ButtonPiano.SetActive(false);
     }
 
     void Update()

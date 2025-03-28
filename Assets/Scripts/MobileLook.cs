@@ -13,6 +13,8 @@ public class MobileLook : MonoBehaviour
     [SerializeField] private float cameraSensitivity;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float moveInputDeadZone;
+    public bool moveCamera;
+    public bool movePlayer;
 
     // Touch detection
     private int leftFingerId, rightFingerId;
@@ -29,6 +31,8 @@ public class MobileLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        moveCamera = true;
+        movePlayer = true;
         // id = -1 means the finger is not being tracked
         leftFingerId = -1;
         rightFingerId = -1;
@@ -133,25 +137,31 @@ public class MobileLook : MonoBehaviour
         }
     }
 
-    void LookAround()
+    public void LookAround()
     {
-
+        if (moveCamera == true)
+        {
         // vertical (pitch) rotation
         cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0, 0);
 
         // horizontal (yaw) rotation
         transform.Rotate(transform.up, lookInput.x);
+        }
+
     }
 
-    void Move()
+    public void Move()
     {
-
-        // Don't move if the touch delta is shorter than the designated dead zone
+        if(movePlayer == true)
+        {
         if (moveInput.sqrMagnitude <= moveInputDeadZone) return;
 
         Vector2 movementDirection = joystick.inputDirection * moveSpeed * Time.deltaTime;
         characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
+
+        }
+        // Don't move if the touch delta is shorter than the designated dead zone
     }
 
 }
