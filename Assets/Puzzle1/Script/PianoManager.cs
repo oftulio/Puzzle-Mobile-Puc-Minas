@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class PianoManager : MonoBehaviour
 {
+    public Rigidbody quadroRigidbody; // Referência ao Rigidbody do quadro
+    public GameObject chave; // Referência à chave (inicialmente desativada)
     public AudioSource audioSource;
     public AudioClip[] pianoSounds; // Sons das teclas
     private List<string> playerInput = new List<string>();
@@ -53,6 +55,14 @@ public class PianoManager : MonoBehaviour
     private void PuzzleCompleted()
     {
         Debug.Log("Parabéns! O puzzle foi resolvido.");
+        if (quadroRigidbody != null)
+        {
+            quadroRigidbody.useGravity = true; // Ativa a gravidade do quadro
+        }
+        if (chave != null)
+        {
+            chave.SetActive(true); // Torna a chave visível e coletável
+        }
     }
 
     private int GetKeyIndex(string keyName)

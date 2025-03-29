@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class PianoPuzzle : MonoBehaviour
 {
+    public GameObject pianoCanvas;
     public GameObject puzzlePanel; // Painel do puzzle
     public GameObject player; // Referência ao player
     private MobileLook playerScript; // Acessa o Script do player, cuidado caso as funcoes estiverem privadas nao podem ser modificadas, coloquei bools no MobileLook para desativar e ativar os touche de movimento e girar
@@ -20,6 +21,7 @@ public class PianoPuzzle : MonoBehaviour
         {
            // playerNearby = true;
            GameManager.ins.ButtonPiano.SetActive(true);
+            pianoCanvas.SetActive(true); // ativa o Canvas quando o jogador entra
         }
  
     }
@@ -30,6 +32,7 @@ public class PianoPuzzle : MonoBehaviour
         {
              //playerNearby = false;
             GameManager.ins.ButtonPiano.SetActive(false); // acessa o scrit do GameManager e suas dependencias
+            pianoCanvas.SetActive(false); // desativa o Canvas quando o jogador sai
         }
         
     }
