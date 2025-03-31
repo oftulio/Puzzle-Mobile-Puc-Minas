@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChaveColetavel : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class ChaveColetavel : MonoBehaviour
             gameObject.SetActive(false); // Esconde a chave do cenário
             UIManager.Instance.MostrarMensagem("Você coletou a chave!");
             chaveCanvas.SetActive(false); // Desativa o Canvas quando o jogador sai
+            SceneManager.LoadScene("FimFase1");
         }
     }
 }
