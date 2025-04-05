@@ -17,19 +17,22 @@ public class EnemyAI : MonoBehaviour
     private int currentWaypointIndex = 0;
     private bool waiting = false;
     private Transform player;
+    UIManager uiManager;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         StartCoroutine(PatrolRoutine());
+        uiManager = UIManager.Instance;
+
     }
 
     void Update()
     {
         if (PlayerInSight())
         {
-            SceneManager.LoadScene("GameOver"); // Substitua pelo nome da sua cena de Game Over
+            uiManager.GameOver();
         }
     }
 
