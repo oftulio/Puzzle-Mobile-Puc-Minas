@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public Text mensagemTexto;
     public GameObject painelMensagem;
+    public GameObject painelPause;
     [SerializeField]private GameObject gameOverUI;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
         Time.timeScale = 1f;
         gameOverUI.SetActive(false);
+        painelPause.SetActive(false);
         painelMensagem.SetActive(false);
     }
 
@@ -44,5 +46,15 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
         gameOverUI.SetActive(true);
 
+    }
+    public void PauseGame()
+    {
+        painelPause.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        painelPause.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
