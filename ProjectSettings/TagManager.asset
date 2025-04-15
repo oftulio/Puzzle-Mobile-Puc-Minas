@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Piano
+  - Panfleto2
+  - Panfleto3
+  - Panfleto1
   layers:
   - Default
   - TransparentFX
