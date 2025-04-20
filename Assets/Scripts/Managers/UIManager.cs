@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     public Text mensagemTexto;
     public GameObject painelMensagem;
     public GameObject painelPause;
+    public GameObject painelMenuSensi;
+    public GameObject painelMenuSound;
+    public GameObject painelMenuPause;
     [SerializeField]private GameObject gameOverUI;
 
     private void Awake()
