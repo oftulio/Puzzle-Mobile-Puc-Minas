@@ -9,6 +9,8 @@ TagManager:
   - Panfleto2
   - Panfleto3
   - Panfleto1
+  - PanfletoDica1
+  - Porta
   layers:
   - Default
   - TransparentFX

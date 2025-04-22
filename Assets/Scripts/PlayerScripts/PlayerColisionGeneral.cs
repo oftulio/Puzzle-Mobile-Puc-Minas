@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerColisionGeneral : MonoBehaviour
@@ -5,20 +6,43 @@ public class PlayerColisionGeneral : MonoBehaviour
     public GameObject PanfletoPainel1;
     public GameObject PanfletoPainel2;
     public GameObject PanfletoPainel3;
+    public GameObject PanfletoDica1;
+    public GameObject PanfletoSemChave;
     public GameObject InteragirButton;
+    public GameObject InteragirButtonDica;
+    public GameObject InteragirPortaButton;
     public GameObject fecharPanfleto;
     private MobileLook playerScript;
     public GameObject player; // Referência ao player
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private ChaveColetavel chaveScript;
+    public bool TemAChave = false;
+
+
+    public Transform doorPivot;
+    public float rotationAngle = -90f;
+    public float rotationSpeed = 2f;
+    private bool isOpen = false;
+    private Quaternion targetRotation;
+    public bool portaAbriu = false;
+
+
+    
     void Start()
     {
+        
         playerScript = player.GetComponent<MobileLook>();
+        
+        targetRotation = doorPivot.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        doorPivot.rotation = Quaternion.Slerp(doorPivot.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        if(portaAbriu == true)
+        {
+            InteragirPortaButton.SetActive(false);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,8 +55,25 @@ public class PlayerColisionGeneral : MonoBehaviour
         
         if (other.CompareTag("Panfleto3"))
             InteragirButton.SetActive(true);
-        
+        if (other.CompareTag("PanfletoDica1"))
+            InteragirButtonDica.SetActive(true);
 
+        if (other.CompareTag("Porta"))
+        {
+            InteragirPortaButton.SetActive(true);
+            
+
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        InteragirButton.SetActive(false);
+        InteragirPortaButton.SetActive(false);
+        PanfletoPainel1.SetActive(false);
+        PanfletoPainel2.SetActive(false);
+        PanfletoPainel3.SetActive(false);
+        PanfletoDica1.SetActive(false);
+        PanfletoSemChave.SetActive(false);
     }
 
     public void InteragirPanfleto1()
@@ -54,12 +95,34 @@ public class PlayerColisionGeneral : MonoBehaviour
         playerScript.moveCamera = false;
         playerScript.movePlayer = false;
     }
+    public void InteragirPanfletoDica()
+    {
+        PanfletoDica1.SetActive(true);
+        playerScript.moveCamera = false;
+        playerScript.movePlayer = false;
+    }
+    public void InteragirPorta()
+    {
+        if (TemAChave == true)
+        {
+            isOpen = !isOpen;
+            float angle = isOpen ? rotationAngle : 0f;
+            targetRotation = Quaternion.Euler(0, angle, 0); // Gira no eixo Y
+            InteragirPortaButton.SetActive(false);
+            portaAbriu = true;
+        }
+        else
+        {
+            PanfletoSemChave.SetActive(true);
+        }
+    }
 
     public void FecharPanfleto()
     {
         PanfletoPainel1.SetActive(false);
         PanfletoPainel2.SetActive(false);
         PanfletoPainel3.SetActive(false);
+        PanfletoDica1.SetActive(false);
         playerScript.moveCamera = true;
         playerScript.movePlayer = true;
     }
