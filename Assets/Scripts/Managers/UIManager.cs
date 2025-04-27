@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     public GameObject painelMenuSensi;
     public GameObject painelMenuSound;
     public GameObject painelMenuPause;
+
+    public GameObject painelPauseGame;
+    public GameObject painelSettingsGame;
     [SerializeField]private GameObject gameOverUI;
 
     private void Awake()
@@ -22,6 +25,8 @@ public class UIManager : MonoBehaviour
         gameOverUI.SetActive(false);
         painelPause.SetActive(false);
         painelMensagem.SetActive(false);
+        painelSettingsGame.SetActive(false);
+
     }
 
     public void MostrarMensagem(string mensagem)
@@ -59,5 +64,17 @@ public class UIManager : MonoBehaviour
     {
         painelPause.SetActive(false);
         Time.timeScale = 1f;
+    }
+    public void PainelPause()
+    {
+        painelPauseGame.SetActive(true);
+        painelSettingsGame.SetActive(false);
+        
+    }
+    public void painelSettings()
+    {
+        painelSettingsGame.SetActive(true);
+        painelPauseGame.SetActive(false);
+        
     }
 }
