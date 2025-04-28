@@ -9,11 +9,15 @@ public class ChaveColetavel : MonoBehaviour
     public GameObject chaveCanvas;
     private PlayerColisionGeneral playerScript;
     public GameObject player; // Referência ao player
+    public AudioSource audioSource;
+    public AudioClip SomChaveColetada;
+    
 
     private void Start()
     {
         botaoColetar.SetActive(false); // Garante que o botão inicie desativado
         playerScript = player.GetComponent<PlayerColisionGeneral>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,13 +44,15 @@ public class ChaveColetavel : MonoBehaviour
     {
         if (playerPerto)
         {
+            audioSource.PlayOneShot(SomChaveColetada);
             Debug.Log("Chave coletada!");
             botaoColetar.SetActive(false);
             gameObject.SetActive(false); // Esconde a chave do cenário
-            UIManager.Instance.MostrarMensagem("Você coletou a chave!");
+            UIManager.Instance.MostrarMensagem("Você coletou a chave da cozinha");
             chaveCanvas.SetActive(false); // Desativa o Canvas quando o jogador sai
             //SceneManager.LoadScene("FimFase1");
             playerScript.TemAChave = true;
+            
         }
     }
 }

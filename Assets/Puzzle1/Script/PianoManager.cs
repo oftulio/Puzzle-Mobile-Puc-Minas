@@ -9,7 +9,7 @@ public class PianoManager : MonoBehaviour
     public AudioClip[] pianoSounds; // Sons das teclas
     private List<string> playerInput = new List<string>();
     private string[] correctSequence = { "Do1", "Mi", "Re", "Sol", "Si", "La", "Mi", "Fa" };
-
+    public AudioClip SomQuadroCaindo;
     public void PlayKey(string keyName)
     {
         int index = GetKeyIndex(keyName);
@@ -58,6 +58,7 @@ public class PianoManager : MonoBehaviour
         if (quadroRigidbody != null)
         {
             quadroRigidbody.useGravity = true; // Ativa a gravidade do quadro
+            audioSource.PlayOneShot(SomQuadroCaindo);
         }
         if (chave != null)
         {

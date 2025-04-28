@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor.SearchService;
+//using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
