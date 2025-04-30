@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
         Time.timeScale = 1f;
         gameOverUI.SetActive(false);
+        painelPauseGame.SetActive(true);
         painelPause.SetActive(false);
         painelMensagem.SetActive(false);
         painelSettingsGame.SetActive(false);
