@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject painelMenuSound;
     public GameObject painelMenuPause;
 
+    public float SpeedSkyBox;
+
     public GameObject painelPauseGame;
     public GameObject painelSettingsGame;
     [SerializeField]private GameObject gameOverUI;
@@ -28,6 +30,10 @@ public class UIManager : MonoBehaviour
         painelMensagem.SetActive(false);
         painelSettingsGame.SetActive(false);
 
+    }
+    private void Update()
+    {
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * SpeedSkyBox);
     }
 
     public void MostrarMensagem(string mensagem)
