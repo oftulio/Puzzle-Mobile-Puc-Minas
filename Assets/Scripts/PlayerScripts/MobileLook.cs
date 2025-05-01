@@ -54,14 +54,14 @@ public class MobileLook : MonoBehaviour
         if (rightFingerId != -1)
         {
             // Ony look around if the right finger is being tracked
-            Debug.Log("Rotating");
+            //Debug.Log("Rotating");
             LookAround();
         }
 
         if (leftFingerId != -1)
         {
             // Ony move if the left finger is being tracked
-            Debug.Log("Moving");
+            //Debug.Log("Moving");
             Move();
         }
     }
@@ -101,13 +101,13 @@ public class MobileLook : MonoBehaviour
                     {
                         // Stop tracking the left finger
                         leftFingerId = -1;
-                        Debug.Log("Stopped tracking left finger");
+                        //Debug.Log("Stopped tracking left finger");
                     }
                     else if (t.fingerId == rightFingerId)
                     {
                         // Stop tracking the right finger
                         rightFingerId = -1;
-                        Debug.Log("Stopped tracking right finger");
+                        //Debug.Log("Stopped tracking right finger");
                     }
 
                     break;
