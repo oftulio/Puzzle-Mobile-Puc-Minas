@@ -8,10 +8,12 @@ public class PlayerColisionGeneral : MonoBehaviour
     public GameObject PanfletoPainel3;
     public GameObject PanfletoDica1;
     public GameObject PanfletoSemChave;
+    public GameObject InteragirGeladeiraButton;
     public GameObject InteragirButton;
     public GameObject InteragirButtonDica;
     public GameObject InteragirPortaButton;
     public GameObject fecharPanfleto;
+    public GameObject fecharPuzzleGeladeiraButton;
     private MobileLook playerScript;
     public GameObject player; // Referência ao player
     private ChaveColetavel chaveScript;
@@ -19,10 +21,14 @@ public class PlayerColisionGeneral : MonoBehaviour
 
 
     public Transform doorPivot;
+    public Transform GeladeiraPivot;
     public float rotationAngle = -90f;
+    public float rotationAngleGela = -90f;
     public float rotationSpeed = 2f;
     private bool isOpen = false;
+    private bool GeladeiraisOpen = false;
     private Quaternion targetRotation;
+    private Quaternion targetRotationGeladeira;
     public bool portaAbriu = false;
 
 
@@ -33,13 +39,15 @@ public class PlayerColisionGeneral : MonoBehaviour
         playerScript = player.GetComponent<MobileLook>();
         
         targetRotation = doorPivot.rotation;
+        targetRotationGeladeira = GeladeiraPivot.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
         doorPivot.rotation = Quaternion.Slerp(doorPivot.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        if(portaAbriu == true)
+        GeladeiraPivot.rotation = Quaternion.Slerp(GeladeiraPivot.rotation, targetRotationGeladeira, Time.deltaTime * rotationSpeed);
+        if (portaAbriu == true)
         {
             InteragirPortaButton.SetActive(false);
         }
@@ -61,8 +69,10 @@ public class PlayerColisionGeneral : MonoBehaviour
         if (other.CompareTag("Porta"))
         {
             InteragirPortaButton.SetActive(true);
-            
-
+        }
+        if (other.CompareTag("Geladeira"))
+        {
+            InteragirGeladeiraButton.SetActive(true);
         }
     }
     public void OnTriggerExit(Collider other)
@@ -74,6 +84,7 @@ public class PlayerColisionGeneral : MonoBehaviour
         PanfletoPainel3.SetActive(false);
         PanfletoDica1.SetActive(false);
         PanfletoSemChave.SetActive(false);
+        InteragirGeladeiraButton.SetActive(false);
     }
 
     public void InteragirPanfleto1()
@@ -127,4 +138,24 @@ public class PlayerColisionGeneral : MonoBehaviour
         playerScript.movePlayer = true;
     }
 
+    public void AbrirPuzzle()
+    {
+        fecharPuzzleGeladeiraButton.SetActive(true);
+        GeladeiraisOpen = !GeladeiraisOpen;
+        InteragirGeladeiraButton.SetActive(false);
+        float angle = GeladeiraisOpen ? rotationAngle : 0f;
+        targetRotationGeladeira = Quaternion.Euler(0, angle, 0);
+        playerScript.moveCamera = false;
+        playerScript.movePlayer = false;
+    }
+
+    public void FecharPuzzle()
+    {
+
+        playerScript.moveCamera = true;
+        playerScript.movePlayer = true;
+        fecharPuzzleGeladeiraButton.SetActive(false);
+        targetRotationGeladeira = Quaternion.Euler(0, 0, 0);
+        GeladeiraisOpen = false;
+    }
 }

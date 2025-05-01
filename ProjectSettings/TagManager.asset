@@ -11,6 +11,7 @@ TagManager:
   - Panfleto1
   - PanfletoDica1
   - Porta
+  - Geladeira
   layers:
   - Default
   - TransparentFX
