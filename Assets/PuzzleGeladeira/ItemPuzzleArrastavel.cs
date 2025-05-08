@@ -24,7 +24,6 @@ public class ItemPuzzle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         Vector3 worldPoint = cam.ScreenToWorldPoint(eventData.position);
         offset = transform.position - worldPoint;
-
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -33,7 +32,6 @@ public class ItemPuzzle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         Vector3 targetPos = worldPoint + offset;
         targetPos.z = zPos;
         transform.position = targetPos;
-        Debug.Log("Arrastando: " + gameObject.name);
     }
 
     public void OnEndDrag(PointerEventData eventData)

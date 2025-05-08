@@ -13,6 +13,7 @@ TagManager:
   - Porta
   - Geladeira
   - SlotGeladeira
+  - ItemPuzzle
   layers:
   - Default
   - TransparentFX
