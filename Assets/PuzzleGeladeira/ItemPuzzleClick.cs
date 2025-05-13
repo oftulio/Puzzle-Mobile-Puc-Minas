@@ -48,6 +48,8 @@ public class ItemPuzzleClick : MonoBehaviour
             // Restaura materiais
             itemSelecionado.rend.material = materialPadrao;
             itemSelecionado = null;
+            Object.FindAnyObjectByType<PuzzleVerificador>()?.VerificarPuzzle();
         }
+        
     }
 }
