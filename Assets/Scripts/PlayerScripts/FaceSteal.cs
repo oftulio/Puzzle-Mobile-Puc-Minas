@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class FaceSteal : MonoBehaviour
 {
-    public RawImage playerFaceUI; // Referência ao Image da UI que mostra o rosto do player
+    public Image playerFaceUI; // Referência ao Image da UI que mostra o rosto do player
     private EnemyAI nearbyEnemy; // Referência ao inimigo mais próximo
     public GameObject RoubarRostoButton;
 
@@ -12,7 +12,7 @@ public class FaceSteal : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             nearbyEnemy = other.GetComponent<EnemyAI>();
-            RoubarRostoButton.gameObject.SetActive(true);
+            RoubarRostoButton.SetActive(true);
         }
     }
 
@@ -21,7 +21,7 @@ public class FaceSteal : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             nearbyEnemy = null;
-            RoubarRostoButton.gameObject.SetActive(false);
+            RoubarRostoButton.SetActive(false);
         }
     }
 
@@ -29,10 +29,10 @@ public class FaceSteal : MonoBehaviour
     {
         if (nearbyEnemy != null)
         {
-            playerFaceUI.texture = nearbyEnemy.faceTexture; // Atualiza o rosto do player
+            playerFaceUI.sprite = nearbyEnemy.faceTexture; // Atualiza o rosto do player
             Destroy(nearbyEnemy.gameObject); // Remove o inimigo
-            RoubarRostoButton.gameObject.SetActive(false);
             nearbyEnemy = null;
+            RoubarRostoButton.SetActive(false);
         }
     }
 }
