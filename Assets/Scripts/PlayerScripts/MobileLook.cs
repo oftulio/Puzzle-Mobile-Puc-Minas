@@ -42,6 +42,7 @@ public class MobileLook : MonoBehaviour
 
         // calculate the movement input dead zone
         moveInputDeadZone = Mathf.Pow(Screen.height / moveInputDeadZone, 2);
+        moveInputDeadZone = 10;
     }
 
     // Update is called once per frame
