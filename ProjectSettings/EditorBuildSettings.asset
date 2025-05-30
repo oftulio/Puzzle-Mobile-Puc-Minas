@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 99e1983d5ec4c3a4ca756481bb712676
   - enabled: 1
+    path: Assets/Scenes/InteriorDaCasa.unity
+    guid: 2083c8231c687b5478b4e9ced18f53ad
+  - enabled: 1
     path: Assets/Scenes/FimFase1.unity
     guid: 7ac186f463d0ef24f8023fdfb69e8256
   m_configObjects:

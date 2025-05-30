@@ -36,7 +36,7 @@ public class FaceSteal : MonoBehaviour
         }
     }
 
-    public void StealFace()
+    public void StealFaceJardineiro()
     {
         if (nearbyEnemy != null)
         {
@@ -44,6 +44,18 @@ public class FaceSteal : MonoBehaviour
             //Destroy(nearbyEnemy.gameObject); // Remove o inimigo
             //nearbyEnemy = null;
             RoubarRostoButton.SetActive(false);
+            PlayerFaceManager.Instance.currentFace = "Jardineiro";
+        }
+    }
+    public void StealFaceMordomo()
+    {
+        if (nearbyEnemy != null)
+        {
+            playerFaceUI.sprite = nearbyEnemy.faceTexture; // Atualiza o rosto do player
+            //Destroy(nearbyEnemy.gameObject); // Remove o inimigo
+            //nearbyEnemy = null;
+            RoubarRostoButton.SetActive(false);
+            PlayerFaceManager.Instance.currentFace = "Mordomo";
         }
     }
 }
