@@ -3,7 +3,7 @@ using UnityEngine;
 public class PuzzleVerificador : MonoBehaviour
 {
     public Transform[] posicoesEmOrdem; // Lista de posições corretas na ordem do puzzle
-
+    public GameObject GeladeiraButton;
     void Start()
     {
         VerificarPuzzle();
@@ -41,7 +41,9 @@ public class PuzzleVerificador : MonoBehaviour
         if (resolvido)
         {
             Debug.Log("Puzzle Resolvido!");
+            Object.FindAnyObjectByType<QuestManager>().CompletePuzzle();
             // Aqui você pode tocar um som, mostrar painel de vitória etc.
+            Destroy(GeladeiraButton);
         }
         else
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class PianoManager : MonoBehaviour
 {
+    public GameObject PianoButton;
     public Rigidbody quadroRigidbody; // Referência ao Rigidbody do quadro
     public GameObject chave; // Referência à chave (inicialmente desativada)
     public AudioSource audioSource;
@@ -24,8 +25,10 @@ public class PianoManager : MonoBehaviour
         {
             if (IsSequenceCorrect())
             {
+                Destroy(PianoButton); 
                 Debug.Log("Puzzle Resolvido!");
                 PuzzleCompleted();
+                Object.FindAnyObjectByType<QuestManager>().CompletePuzzle();
             }
             else
             {
