@@ -15,6 +15,7 @@ TagManager:
   - SlotGeladeira
   - ItemPuzzle
   - Jardineiro
+  - Mordomo
   layers:
   - Default
   - TransparentFX

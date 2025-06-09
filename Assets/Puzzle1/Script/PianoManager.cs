@@ -1,9 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.ProBuilder.Shapes;
+using System.Collections;
+using Unity.Cinemachine;
+using UnityEditor.Rendering;
+using UnityEngine.UI;
 
 public class PianoManager : MonoBehaviour
 {
+    
     public GameObject PianoButton;
+    public GameObject PianoPainel;
     public Rigidbody quadroRigidbody; // Referência ao Rigidbody do quadro
     public GameObject chave; // Referência à chave (inicialmente desativada)
     public AudioSource audioSource;
@@ -11,6 +18,13 @@ public class PianoManager : MonoBehaviour
     private List<string> playerInput = new List<string>();
     private string[] correctSequence = { "Do1", "Mi", "Re", "Sol", "Si", "La", "Mi", "Fa" };
     public AudioClip SomQuadroCaindo;
+    [SerializeField] private PortaInternaSalao door1;
+    [SerializeField] private PortaInternaSalao door2;
+    public PianoPuzzle pianoPuzzle;
+    public GameObject Mordomo;
+
+   
+
     public void PlayKey(string keyName)
     {
         int index = GetKeyIndex(keyName);
@@ -29,6 +43,8 @@ public class PianoManager : MonoBehaviour
                 Debug.Log("Puzzle Resolvido!");
                 PuzzleCompleted();
                 Object.FindAnyObjectByType<QuestManager>().CompletePuzzle();
+                
+
             }
             else
             {
@@ -62,6 +78,11 @@ public class PianoManager : MonoBehaviour
         {
             quadroRigidbody.useGravity = true; // Ativa a gravidade do quadro
             audioSource.PlayOneShot(SomQuadroCaindo);
+            door1.IsOpen();
+            door2.IsOpen();
+            pianoPuzzle.ClosePuzzle();
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            Mordomo.SetActive(true);
         }
         if (chave != null)
         {
@@ -84,4 +105,7 @@ public class PianoManager : MonoBehaviour
             default: return -1;
         }
     }
+
+    
+   
 }

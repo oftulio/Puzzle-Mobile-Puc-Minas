@@ -66,5 +66,6 @@ public class PianoPuzzle : MonoBehaviour
         //mainCamera.GetComponent<MobileLook>().enabled = true;
         Object.FindAnyObjectByType<PianoManager>().ResetPuzzle(); // Reseta contagem de teclas
         Debug.Log(joyStick);
+        print("Alouuuuuu");
     }
 }

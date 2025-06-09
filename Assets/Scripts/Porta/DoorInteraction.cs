@@ -11,6 +11,7 @@ public class DoorInteractionMobile : MonoBehaviour
     public GameObject interactionButton; // Referência ao botão de interação (UI)
 
     private bool playerNearby = false;
+    public GameObject TransitionPainel;
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class DoorInteractionMobile : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneName);
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            Object.FindAnyObjectByType<SceneTransition>().TransitionToScene("nextSceneName");
+            TransitionPainel.SetActive(false);
+
         }
         else
         {
