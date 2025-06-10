@@ -21,12 +21,17 @@ public class DialogoMordomo : MonoBehaviour
     public float soundCooldown = 2f; // Intervalo mínimo entre sons
     public float lastSoundTime = 0f; // Tempo do último som tocado
     public GameObject DialogoMordmoImage;
-
+    public GameObject DialogoMordmoText;    
+    public GameObject DialogoMordmoButton;
+    public GameObject MordomoScript;
+    public GameObject PlayerRef;
+    public bool DialogoTerminou = false;
+    public BoxCollider boxCollider;
 
     void Start()
     {
-
         
+
     }
 
     void Update()
@@ -79,6 +84,15 @@ public class DialogoMordomo : MonoBehaviour
         Debug.Log("Cutscene Finalizada!");
         // Aqui você pode adicionar o que acontece depois da cutscene (ex.: carregar cena, fechar painel, etc.)
         //SceneManager.LoadScene(2);
+        Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+        DialogoMordmoImage.SetActive(false);
+        DialogoMordmoText.SetActive(false);
+        Destroy(DialogoMordmoButton);
+        MordomoScript.GetComponent<RandomPatrol>().enabled = true;
+        PlayerRef.GetComponent<FaceSteal>().enabled = true;
+        DialogoTerminou = true;
+        boxCollider.size = new Vector3(1.28f, 2.02f, 2.91f); // Novo tamanho
+        boxCollider.center = new Vector3(0f, 1f, -0.01f); // Novo lugar
     }
     public void StartDialogoMordomo()
     {

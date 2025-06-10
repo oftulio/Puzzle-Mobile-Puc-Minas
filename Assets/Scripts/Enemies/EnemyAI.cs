@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour
     // private bool waiting = false;
     private Transform player;
     UIManager uiManager;
+    public GameObject ConversarButton;
+    public GameObject ImagemFundoDialogo;
+    public GameObject TextoDialogo;
 
     void Start()
     {
@@ -86,4 +89,25 @@ public class EnemyAI : MonoBehaviour
     // }
     //return false;
     // }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            ConversarButton.SetActive(true);
+        }
+        
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ConversarButton.SetActive(false);
+            ImagemFundoDialogo.SetActive(false);    
+            
+        }
+       
+    }
 }
