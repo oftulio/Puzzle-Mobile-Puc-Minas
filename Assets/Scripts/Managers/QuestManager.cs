@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
     private int currentQuestIndex = 0;
 
     private int completedPuzzles = 0;     // Puzzles resolvidos na missão atual
+    
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class QuestManager : MonoBehaviour
             }
             else
             {
-                questUIText.text = "Todas as missões concluídas!";
+                questUIText.text = "";
                 puzzleUIText.text = "";
             }
         }

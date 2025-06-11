@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
+    
+    
     public Sprite faceTexture; // Defina a imagem do rosto desse inimigo no Inspector
+
+    
     //public Transform[] waypoints; // Array de pontos de patrulha
     //public float waitTimeFirst = 20f; // Tempo de espera no primeiro ponto
     //public float waitTimeOthers = 10f; // Tempo de espera nos outros pontos
@@ -37,6 +41,9 @@ public class EnemyAI : MonoBehaviour
         // {
         //    uiManager.GameOver();
         // }
+
+       
+        
     }
 
     //IEnumerator PatrolRoutine()
@@ -97,6 +104,7 @@ public class EnemyAI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ConversarButton.SetActive(true);
+            
         }
         
     }
@@ -105,8 +113,9 @@ public class EnemyAI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ConversarButton.SetActive(false);
-            ImagemFundoDialogo.SetActive(false);    
+            ImagemFundoDialogo.SetActive(false);
             
+
         }
        
     }

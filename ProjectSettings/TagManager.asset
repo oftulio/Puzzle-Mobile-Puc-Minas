@@ -16,6 +16,7 @@ TagManager:
   - ItemPuzzle
   - Jardineiro
   - Mordomo
+  - Baronesa
   layers:
   - Default
   - TransparentFX
