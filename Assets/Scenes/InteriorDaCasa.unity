@@ -595,6 +595,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1432955433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &29899546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 29899547}
+  m_Layer: 0
+  m_Name: PontoFInalBaronesa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &29899547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29899546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.218, y: -0.588, z: 34.397}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &31063665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4647,8 +4678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PianoButton: {fileID: 945626154}
   PianoPainel: {fileID: 101985133}
-  quadroRigidbody: {fileID: 0}
-  chave: {fileID: 0}
   audioSource: {fileID: 360760674}
   pianoSounds:
   - {fileID: 8300000, guid: 6d7fd1109e7e07442854d09ce745d29b, type: 3}
@@ -12422,7 +12451,7 @@ GameObject:
   - component: {fileID: 790136834}
   - component: {fileID: 790136833}
   m_Layer: 5
-  m_Name: InteragirMordomoButton
+  m_Name: InteragirBaronesaButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12484,9 +12513,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 813975007}
-        m_TargetAssemblyTypeName: CutsceneController, Assembly-CSharp
-        m_MethodName: StartDialogoMordomo
+      - m_Target: {fileID: 813975012}
+        m_TargetAssemblyTypeName: DialogoBaronesa, Assembly-CSharp
+        m_MethodName: StartDialogoBaronesa
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12933,47 +12962,14 @@ GameObject:
   - component: {fileID: 813975010}
   - component: {fileID: 813975009}
   - component: {fileID: 813975008}
-  - component: {fileID: 813975007}
+  - component: {fileID: 813975012}
   m_Layer: 0
-  m_Name: CanvasDialogoMordomo
+  m_Name: CanvasDialogoBaronesa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &813975007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813975006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfd1b908646d474081ee839414303ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyText: {fileID: 1844388279}
-  storyLines:
-  - "Eu ouvi voc\xEA tocando..."
-  - "Voc\xEA at\xE9 que toca bem para um jardineiro, mas n\xE3o quero que fa\xE7a
-    isso de novo seu imundo"
-  - Se apresse e vai falar com a baronesa
-  typingSpeed: 0.1
-  audioSource: {fileID: 1647144828}
-  typingSounds:
-  - {fileID: 8300000, guid: 6882a3bb1c542e04b959fcb88f18ceed, type: 3}
-  - {fileID: 8300000, guid: 56e842b08d2e25b4c9714e32d0fdf56f, type: 3}
-  - {fileID: 8300000, guid: 8415fb8237ed0c94f9a0b02b06617d3d, type: 3}
-  soundCooldown: 0.4
-  lastSoundTime: 0
-  DialogoMordmoImage: {fileID: 1418948244}
-  DialogoMordmoText: {fileID: 1844388277}
-  DialogoMordmoButton: {fileID: 790136832}
-  MordomoScript: {fileID: 1196458713}
-  PlayerRef: {fileID: 4107889983022029096}
-  DialogoTerminou: 0
-  boxCollider: {fileID: 1196458718}
 --- !u!114 &813975008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13057,6 +13053,43 @@ RectTransform:
   m_AnchoredPosition: {x: 1154.16, y: 540.588}
   m_SizeDelta: {x: 2280, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &813975012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813975006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46191c3e47276e41925ac9aed4ad708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyLinesSemFace:
+  - "O que voc\xEA est\xE1 fazendo aqui?"
+  - "Seu lugar \xE9 l\xE1 fora jardineiro sujo"
+  storyText: {fileID: 1844388279}
+  storyLines:
+  - "Que bom que voc\xEA chegou!"
+  - "Sabe que eu amo sua salada de frutas n\xE9..."
+  - Que tal ir na geladeira para fazer uma para mim?
+  typingSpeed: 0.1
+  audioSource: {fileID: 1647144828}
+  typingSounds:
+  - {fileID: 8300000, guid: 6882a3bb1c542e04b959fcb88f18ceed, type: 3}
+  - {fileID: 8300000, guid: 56e842b08d2e25b4c9714e32d0fdf56f, type: 3}
+  - {fileID: 8300000, guid: 8415fb8237ed0c94f9a0b02b06617d3d, type: 3}
+  soundCooldown: 0.4
+  lastSoundTime: 0
+  DialogoBaronesaImage: {fileID: 1418948244}
+  DialogoBaronesaText: {fileID: 1844388277}
+  DialogoBaronesaButton: {fileID: 790136832}
+  BaronesaScript: {fileID: 1196458713}
+  PlayerRef: {fileID: 4107889983022029096}
+  faceSteal: {fileID: 1151874392790759428}
+  DialogoTerminou: 0
+  boxCollider: {fileID: 1196458718}
+  rouboufacemordomo: 0
 --- !u!1001 &817048748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13437,6 +13470,7 @@ MonoBehaviour:
   PlayerRef: {fileID: 4107889983022029096}
   DialogoTerminou: 0
   boxCollider: {fileID: 1432955436}
+  Baronesa: {fileID: 1196458713}
 --- !u!1 &835226783
 GameObject:
   m_ObjectHideFlags: 0
@@ -19375,7 +19409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agente: {fileID: 1196458717}
-  pontoFinal: {fileID: 1701143196}
+  pontoFinal: {fileID: 29899547}
   tempoTonto: 120
   raioMovimento: 3
 --- !u!114 &1196458715
@@ -22002,7 +22036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1329828420}
   m_Layer: 0
-  m_Name: "Posi\xE7\xE3odaCabe\xE7aInimigo"
+  m_Name: "Posi\xE7\xE3odaCabe\xE7aBaronesa"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25831,7 +25865,7 @@ GameObject:
   - component: {fileID: 1568376458}
   - component: {fileID: 1568376457}
   m_Layer: 0
-  m_Name: Mordomo_model
+  m_Name: Baronesa_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27803,7 +27837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701143196}
   m_Layer: 0
-  m_Name: PontoFinal
+  m_Name: PontoFinalMordomo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45979,14 +46013,22 @@ MonoBehaviour:
   playerFaceUI: {fileID: 465310997}
   RoubarRostoButton: {fileID: 2101662388}
   RoubouFaceJardineiro: 0
+  RoubouFaceMordomo: 0
   dialogoMordomo: {fileID: 833226373}
   canvas: {fileID: 833226368}
   TerminouDiologoMordomo: 0
   birdsPrefab: {fileID: 4820950634189724497, guid: e47d11efb5f04a14fba6adaabb7792fb, type: 3}
-  headPosition: {fileID: 25283376}
-  inimigotonto: {fileID: 1432955439}
-  inimigo: {fileID: 1432955432}
+  headPositionMordomo: {fileID: 25283376}
+  headPositionBaronesa: {fileID: 1329828420}
+  headPositionJardineiro: {fileID: 1329828420}
+  Mordomotonto: {fileID: 1432955439}
+  Baronesatonta: {fileID: 1196458714}
+  Mordomo: {fileID: 1432955432}
+  Baronesa: {fileID: 1196458713}
   MordomoScript: {fileID: 1432955432}
+  BaronesaScript: {fileID: 1196458713}
+  PlayerRef: {fileID: 4107889983022029096}
+  faceSteal: {fileID: 1151874392790759428}
   anguloDeVisao: 60
   nomeCenaGameOver: GameOver
 --- !u!1 &1153883196880017485
@@ -61503,7 +61545,7 @@ Transform:
   m_GameObject: {fileID: 4107889983022029096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9996754, z: 0, w: -0.025479078}
-  m_LocalPosition: {x: -33.975, y: 0.275, z: -3.646}
+  m_LocalPosition: {x: 1.38, y: 0.174, z: 15.31}
   m_LocalScale: {x: 0.59983, y: 1.7309394, z: 0.74271}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -110834,3 +110876,4 @@ SceneRoots:
   - {fileID: 543450653322798860}
   - {fileID: 543450653564084196}
   - {fileID: 1701143196}
+  - {fileID: 29899547}

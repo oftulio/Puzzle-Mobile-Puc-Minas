@@ -1,0 +1,140 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Rendering.PostProcessing;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+
+public class DialogoBaronesa : MonoBehaviour
+{
+    public string[] storyLinesSemFace; // Texto alternativo para quando o player NÃO tem a face
+    private string[] dialogoAtual;
+
+    public TextMeshProUGUI storyText; // Referência para o texto
+
+    public string[] storyLines; // Array de textos da história
+    public float typingSpeed = 0.05f; // Velocidade de digitação do texto
+
+    public AudioSource audioSource; // Referência para o AudioSource
+    public List<AudioClip> typingSounds; // Lista de sons de digitação
+
+    private int currentLine = 0; // Linha atual da história
+    private bool isTyping = false; // Controla se o texto está sendo digitado
+    public float soundCooldown = 2f; // Intervalo mínimo entre sons
+    public float lastSoundTime = 0f; // Tempo do último som tocado
+    public GameObject DialogoBaronesaImage;
+    public GameObject DialogoBaronesaText;
+    public GameObject DialogoBaronesaButton;
+    public GameObject BaronesaScript;
+    public GameObject PlayerRef;
+    public FaceSteal faceSteal;
+    public bool DialogoTerminou = false;
+    public BoxCollider boxCollider;
+    public bool rouboufacemordomo;
+    void Start()
+    {
+        faceSteal = PlayerRef.GetComponent<FaceSteal>();
+        rouboufacemordomo = faceSteal.RoubouFaceMordomo;
+    }
+
+    void Update()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !isTyping && DialogoBaronesaImage.activeInHierarchy) // Clique do mouse
+        {
+            AdvanceStory();
+        }
+    }
+
+    void AdvanceStory()
+    {
+        currentLine++;
+
+        if (currentLine < dialogoAtual.Length)
+        {
+            StartCoroutine(TypeLine(dialogoAtual[currentLine]));
+        }
+        else
+        {
+            EndCutscene();
+        }
+    }
+
+
+    IEnumerator TypeLine(string line)
+    {
+        isTyping = true;
+        storyText.text = ""; // Limpa o texto anterior
+
+        foreach (char letter in line.ToCharArray())
+        {
+            storyText.text += letter;
+            // Toca um som aleatório de digitação
+            if (typingSounds.Count > 0 && audioSource != null && Time.time - lastSoundTime >= soundCooldown)
+            {
+                AudioClip randomSound = typingSounds[Random.Range(0, typingSounds.Count)];
+                audioSource.PlayOneShot(randomSound);
+                lastSoundTime = Time.time;
+            }
+
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        isTyping = false;
+    }
+
+    void EndCutscene()
+    {
+        if (dialogoAtual == storyLinesSemFace)
+        {
+            
+            DialogoBaronesaImage.SetActive(false);
+            DialogoBaronesaText.SetActive(false);
+            Debug.Log("Cutscene Finalizada!");
+            DialogoTerminou = true;
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
+        }
+        if (dialogoAtual == storyLines)
+        {
+            Debug.Log("Cutscene Finalizada!");
+            // Aqui você pode adicionar o que acontece depois da cutscene (ex.: carregar cena, fechar painel, etc.)
+            //SceneManager.LoadScene(2);
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            DialogoBaronesaImage.SetActive(false);
+            DialogoBaronesaText.SetActive(false);
+            Destroy(DialogoBaronesaButton);
+            BaronesaScript.GetComponent<RandomPatrol>().enabled = true;
+            PlayerRef.GetComponent<FaceSteal>().enabled = true;
+            DialogoTerminou = true;
+            boxCollider.size = new Vector3(1.28f, 2.02f, 2.91f); // Novo tamanho
+            boxCollider.center = new Vector3(0f, 1f, -0.01f); // Novo lugar
+        }
+       
+    }
+    public void StartDialogoBaronesa()
+    {
+        if (faceSteal.RoubouFaceMordomo)
+        {
+            DialogoBaronesaImage.SetActive(true);
+            DialogoBaronesaText.SetActive(true);
+            dialogoAtual = storyLines;
+        }
+        else
+        {
+            DialogoBaronesaImage.SetActive(true);
+            DialogoBaronesaText.SetActive(true);
+            dialogoAtual = storyLinesSemFace;
+        }
+
+        currentLine = 0;
+
+        if (dialogoAtual.Length > 0)
+            StartCoroutine(TypeLine(dialogoAtual[0]));
+    }
+
+}
+
+
+

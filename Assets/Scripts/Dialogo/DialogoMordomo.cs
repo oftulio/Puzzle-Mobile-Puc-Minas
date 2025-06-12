@@ -27,6 +27,7 @@ public class DialogoMordomo : MonoBehaviour
     public GameObject PlayerRef;
     public bool DialogoTerminou = false;
     public BoxCollider boxCollider;
+    public GameObject Baronesa;
 
     void Start()
     {
@@ -93,6 +94,7 @@ public class DialogoMordomo : MonoBehaviour
         DialogoTerminou = true;
         boxCollider.size = new Vector3(1.28f, 2.02f, 2.91f); // Novo tamanho
         boxCollider.center = new Vector3(0f, 1f, -0.01f); // Novo lugar
+        Baronesa.SetActive(true);
     }
     public void StartDialogoMordomo()
     {

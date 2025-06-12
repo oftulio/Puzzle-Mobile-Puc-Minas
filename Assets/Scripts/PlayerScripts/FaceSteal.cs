@@ -4,19 +4,27 @@ using UnityEngine.UI;
 
 public class FaceSteal : MonoBehaviour
 {
-    
+
     public Image playerFaceUI; // Referência ao Image da UI que mostra o rosto do player
     private EnemyAI nearbyEnemy; // Referência ao inimigo mais próximo
     public GameObject RoubarRostoButton;
-    public bool RoubouFaceJardineiro;
+    public bool RoubouFaceJardineiro = false;
+    public bool RoubouFaceMordomo = false;
     public DialogoMordomo dialogoMordomo;
     public GameObject canvas;
     public bool TerminouDiologoMordomo;
     public GameObject birdsPrefab;
-    public Transform headPosition; // Posição da cabeça do inimigo
-    public InimigoTonto inimigotonto;
-    public GameObject inimigo;
+    public Transform headPositionMordomo; // Posição da cabeça do inimigo
+    public Transform headPositionBaronesa; // Posição da cabeça do inimigo
+    public Transform headPositionJardineiro; // Posição da cabeça do inimigo
+    public InimigoTonto Mordomotonto;
+    public InimigoTonto Baronesatonta;
+    public GameObject Mordomo;
+    public GameObject Baronesa;
     public GameObject MordomoScript;
+    public GameObject BaronesaScript;
+    public GameObject PlayerRef;
+    public FaceSteal faceSteal;
     [Header("Configurações")]
     public float anguloDeVisao = 60f;
     public string nomeCenaGameOver = "GameOver";
@@ -25,13 +33,15 @@ public class FaceSteal : MonoBehaviour
 
     private void Start()
     {
+        faceSteal = PlayerRef.GetComponent<FaceSteal>();
         dialogoMordomo = canvas.GetComponent<DialogoMordomo>();
-        inimigotonto = inimigo.GetComponent<InimigoTonto>();
+        Mordomotonto = Mordomo.GetComponent<InimigoTonto>();
+        Baronesatonta = Baronesa.GetComponent<InimigoTonto>();
         TerminouDiologoMordomo = dialogoMordomo.DialogoTerminou;
     }
-    
 
-    
+
+
     void OnTriggerEnter(Collider other)
     {
         if (TerminouDiologoMordomo == true)
@@ -42,42 +52,58 @@ public class FaceSteal : MonoBehaviour
                 RoubarRostoButton.SetActive(true);
             }
         }
-           
+
         if (other.CompareTag("Jardineiro"))
         {
             nearbyEnemy = other.GetComponent<EnemyAI>();
             RoubarRostoButton.SetActive(true);
         }
+        if (other.CompareTag("Baronesa"))
+        {
+            if (RoubouFaceMordomo == true)
+            {
+                nearbyEnemy = other.GetComponent<EnemyAI>();
+                RoubarRostoButton.SetActive(true);
+            }
+            
+        }
     }
+
 
     void OnTriggerExit(Collider other)
     {
-            if (other.CompareTag("Mordomo"))
-            {
-                nearbyEnemy = null;
-                RoubarRostoButton.SetActive(false);
-            }
-        
-        
+        if (other.CompareTag("Mordomo"))
+        {
+            nearbyEnemy = null;
+            RoubarRostoButton.SetActive(false);
+        }
+
+
         if (other.CompareTag("Jardineiro"))
         {
             nearbyEnemy = other.GetComponent<EnemyAI>();
             RoubarRostoButton.SetActive(true);
+        }
+
+        if (other.CompareTag("Baronesa"))
+        {
+            nearbyEnemy = other.GetComponent<EnemyAI>();
+            RoubarRostoButton.SetActive(false);
         }
     }
 
     public void StealFaceJardineiro()
     {
-     
 
-            if (nearbyEnemy == null) return;
 
-            Transform inimigoTransform = nearbyEnemy.transform;
+        if (nearbyEnemy == null) return;
 
-            Vector3 direcaoDoInimigo = inimigoTransform.forward;
-            Vector3 direcaoParaPlayer = (transform.position - inimigoTransform.position).normalized;
+        Transform inimigoTransform = nearbyEnemy.transform;
 
-            float angulo = Vector3.Angle(direcaoDoInimigo, direcaoParaPlayer);
+        Vector3 direcaoDoInimigo = inimigoTransform.forward;
+        Vector3 direcaoParaPlayer = (transform.position - inimigoTransform.position).normalized;
+
+        float angulo = Vector3.Angle(direcaoDoInimigo, direcaoParaPlayer);
 
         if (angulo < anguloDeVisao)
         {
@@ -92,11 +118,11 @@ public class FaceSteal : MonoBehaviour
             //nearbyEnemy = null;
             RoubarRostoButton.SetActive(false);
             PlayerFaceManager.Instance.currentFace = "Jardineiro";
-            Instantiate(birdsPrefab, headPosition.position, Quaternion.identity, headPosition);
-            inimigotonto.AtivarTontura();
+            Instantiate(birdsPrefab, headPositionJardineiro.position, Quaternion.identity, headPositionJardineiro);
+            Mordomotonto.AtivarTontura();
         }
-        
-        
+
+
     }
     public void StealFaceMordomo()
     {
@@ -125,9 +151,53 @@ public class FaceSteal : MonoBehaviour
             //nearbyEnemy = null;
             //RoubarRostoButton.SetActive(false);
             PlayerFaceManager.Instance.currentFace = "Mordomo";
-            Instantiate(birdsPrefab, headPosition.position, Quaternion.identity, headPosition);
-            inimigotonto.AtivarTontura();
+            Instantiate(birdsPrefab, headPositionMordomo.position, Quaternion.identity, headPositionMordomo);
+            Baronesatonta.AtivarTontura();
             MordomoScript.GetComponent<RandomPatrol>().enabled = false;
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
+            RoubouFaceMordomo = true;
+
+        }
+        if(RoubouFaceMordomo == true)
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
+
+
+
+
+    }
+
+    public void StealFaceBaronesa()
+    {
+
+        if (nearbyEnemy == null) return;
+
+        Transform inimigoTransform = nearbyEnemy.transform;
+
+        Vector3 direcaoDoInimigo = inimigoTransform.forward;
+        Vector3 direcaoParaPlayer = (transform.position - inimigoTransform.position).normalized;
+
+        float angulo = Vector3.Angle(direcaoDoInimigo, direcaoParaPlayer);
+
+        if (angulo < anguloDeVisao)
+        {
+            // Está na frente → Game Over
+            SceneManager.LoadScene(nomeCenaGameOver);
+        }
+
+        else
+        {
+            print("aaaaaaaaaaaaaaa");
+
+            playerFaceUI.sprite = nearbyEnemy.faceTexture; // Atualiza o rosto do player
+            //Destroy(nearbyEnemy.gameObject); // Remove o inimigo
+            //nearbyEnemy = null;
+            //RoubarRostoButton.SetActive(false);
+            PlayerFaceManager.Instance.currentFace = "Baronesa";
+            Instantiate(birdsPrefab, headPositionBaronesa.position, Quaternion.identity, headPositionBaronesa);
+            Baronesatonta.AtivarTontura();
+            BaronesaScript.GetComponent<RandomPatrol>().enabled = false;
+
+            
 
         }
 
