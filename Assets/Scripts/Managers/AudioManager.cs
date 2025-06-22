@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         //musicsource.clip = backgroundMusicMenu;
-        //musicsource.Play();
+        musicsource.Play();
 
 
 

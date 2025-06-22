@@ -28,6 +28,7 @@ public class DialogoMordomo : MonoBehaviour
     public bool DialogoTerminou = false;
     public BoxCollider boxCollider;
     public GameObject Baronesa;
+    public GameObject RefInteragirButton;
 
     void Start()
     {
@@ -82,7 +83,7 @@ public class DialogoMordomo : MonoBehaviour
 
     void EndCutscene()
     {
-        Debug.Log("Cutscene Finalizada!");
+        Debug.Log("Cutscene Finalizada pixxxxxx!");
         // Aqui você pode adicionar o que acontece depois da cutscene (ex.: carregar cena, fechar painel, etc.)
         //SceneManager.LoadScene(2);
         Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
@@ -99,9 +100,25 @@ public class DialogoMordomo : MonoBehaviour
     public void StartDialogoMordomo()
     {
         DialogoMordmoImage.SetActive(true);
+        RefInteragirButton.SetActive(false);
         if (storyLines.Length > 0)
             StartCoroutine(TypeLine(storyLines[0]));
 
        
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+
+            DialogoTerminou = true;
+            isTyping = false;
+            storyText.text = ""; // Limpa o texto anterior
+            currentLine = 0;
+            audioSource.Stop();
+        }
+
+    }
+
 }

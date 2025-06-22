@@ -15,13 +15,15 @@ public class PianoManager : MonoBehaviour
     public AudioClip[] pianoSounds; // Sons das teclas
     private List<string> playerInput = new List<string>();
     private string[] correctSequence = { "Do1", "Mi", "Re", "Sol", "Si", "La", "Mi", "Fa" };
-    public AudioClip SomQuadroCaindo;
+    public AudioClip SomPuzzleConcluido;
+    public AudioClip SomPuzzleErrado;
     [SerializeField] private PortaInternaSalao door1;
     [SerializeField] private PortaInternaSalao door2;
     public PianoPuzzle pianoPuzzle;
     public GameObject Mordomo;
+    public GameObject messageUI; // Mensagem de "Não possui a face necessária"
+    
 
-   
 
     public void PlayKey(string keyName)
     {
@@ -47,7 +49,12 @@ public class PianoManager : MonoBehaviour
             else
             {
                 Debug.Log("Sequência errada, resetando...");
+                audioSource.PlayOneShot(SomPuzzleErrado);
                 ResetPuzzle();
+
+                    messageUI.SetActive(true);
+                    Invoke("HideMessage", 2f);
+                
             }
         }
     }
@@ -73,7 +80,7 @@ public class PianoManager : MonoBehaviour
     {
         Debug.Log("Parabéns! O puzzle foi resolvido.");
         
-            audioSource.PlayOneShot(SomQuadroCaindo);
+            audioSource.PlayOneShot(SomPuzzleConcluido);
             door1.IsOpen();
             door2.IsOpen();
             pianoPuzzle.ClosePuzzle();
@@ -99,6 +106,12 @@ public class PianoManager : MonoBehaviour
         }
     }
 
-    
-   
+    void HideMessage()
+    {
+        if (messageUI != null)
+        {
+            messageUI.SetActive(false);
+        }
+    }
+
 }

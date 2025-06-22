@@ -25,6 +25,7 @@ public class DialogoBaronesa : MonoBehaviour
     private bool isTyping = false; // Controla se o texto está sendo digitado
     public float soundCooldown = 2f; // Intervalo mínimo entre sons
     public float lastSoundTime = 0f; // Tempo do último som tocado
+    public GameObject RefInteragirButton;
     public GameObject DialogoBaronesaImage;
     public GameObject DialogoBaronesaText;
     public GameObject DialogoBaronesaButton;
@@ -34,6 +35,8 @@ public class DialogoBaronesa : MonoBehaviour
     public bool DialogoTerminou = false;
     public BoxCollider boxCollider;
     public bool rouboufacemordomo;
+    public bool PodeRoubarFace;
+    public bool DialogoComFaceTerminou;
     void Start()
     {
         faceSteal = PlayerRef.GetComponent<FaceSteal>();
@@ -92,39 +95,42 @@ public class DialogoBaronesa : MonoBehaviour
             
             DialogoBaronesaImage.SetActive(false);
             DialogoBaronesaText.SetActive(false);
-            Debug.Log("Cutscene Finalizada!");
+            Debug.Log("Cutscene Finalizada sem face!");
             DialogoTerminou = true;
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
         }
         if (dialogoAtual == storyLines)
         {
-            Debug.Log("Cutscene Finalizada!");
+            Debug.Log("Cutscene Finalizada com face!");
             // Aqui você pode adicionar o que acontece depois da cutscene (ex.: carregar cena, fechar painel, etc.)
             //SceneManager.LoadScene(2);
-            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             DialogoBaronesaImage.SetActive(false);
             DialogoBaronesaText.SetActive(false);
             Destroy(DialogoBaronesaButton);
             BaronesaScript.GetComponent<RandomPatrol>().enabled = true;
-            PlayerRef.GetComponent<FaceSteal>().enabled = true;
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
             DialogoTerminou = true;
             boxCollider.size = new Vector3(1.28f, 2.02f, 2.91f); // Novo tamanho
             boxCollider.center = new Vector3(0f, 1f, -0.01f); // Novo lugar
+            PodeRoubarFace = false;
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
         }
        
     }
     public void StartDialogoBaronesa()
     {
-        if (faceSteal.RoubouFaceMordomo)
+        if (faceSteal.RoubouFaceMordomo == true)
         {
             DialogoBaronesaImage.SetActive(true);
             DialogoBaronesaText.SetActive(true);
+            RefInteragirButton.SetActive(false);
             dialogoAtual = storyLines;
         }
         else
         {
             DialogoBaronesaImage.SetActive(true);
             DialogoBaronesaText.SetActive(true);
+            RefInteragirButton.SetActive(false);
             dialogoAtual = storyLinesSemFace;
         }
 

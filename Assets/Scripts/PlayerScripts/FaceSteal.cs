@@ -10,7 +10,9 @@ public class FaceSteal : MonoBehaviour
     public GameObject RoubarRostoButton;
     public bool RoubouFaceJardineiro = false;
     public bool RoubouFaceMordomo = false;
+    public bool PodeRoubarFace;
     public DialogoMordomo dialogoMordomo;
+    public DialogoBaronesa dialogoBaronesa;
     public GameObject canvas;
     public bool TerminouDiologoMordomo;
     public GameObject birdsPrefab;
@@ -28,6 +30,9 @@ public class FaceSteal : MonoBehaviour
     [Header("Configurações")]
     public float anguloDeVisao = 60f;
     public string nomeCenaGameOver = "GameOver";
+    public AudioSource audioSource;
+    public AudioClip SomRouboDeFace; 
+    
 
 
 
@@ -39,12 +44,17 @@ public class FaceSteal : MonoBehaviour
         Baronesatonta = Baronesa.GetComponent<InimigoTonto>();
         TerminouDiologoMordomo = dialogoMordomo.DialogoTerminou;
     }
+    private void Update()
+    {
+        if (TerminouDiologoMordomo == true)
+            dialogoMordomo.GetComponent<DialogoMordomo>().enabled = false;
+    }
 
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (TerminouDiologoMordomo == true)
+        if (TerminouDiologoMordomo == true && RoubouFaceMordomo == false)
         {
             if (other.CompareTag("Mordomo"))
             {
@@ -60,7 +70,7 @@ public class FaceSteal : MonoBehaviour
         }
         if (other.CompareTag("Baronesa"))
         {
-            if (RoubouFaceMordomo == true)
+            if (RoubouFaceMordomo && dialogoBaronesa.PodeRoubarFace == true)
             {
                 nearbyEnemy = other.GetComponent<EnemyAI>();
                 RoubarRostoButton.SetActive(true);
@@ -120,6 +130,7 @@ public class FaceSteal : MonoBehaviour
             PlayerFaceManager.Instance.currentFace = "Jardineiro";
             Instantiate(birdsPrefab, headPositionJardineiro.position, Quaternion.identity, headPositionJardineiro);
             Mordomotonto.AtivarTontura();
+            audioSource.PlayOneShot(SomRouboDeFace);
         }
 
 
@@ -152,19 +163,23 @@ public class FaceSteal : MonoBehaviour
             //RoubarRostoButton.SetActive(false);
             PlayerFaceManager.Instance.currentFace = "Mordomo";
             Instantiate(birdsPrefab, headPositionMordomo.position, Quaternion.identity, headPositionMordomo);
-            Baronesatonta.AtivarTontura();
+            Mordomotonto.AtivarTontura();
             MordomoScript.GetComponent<RandomPatrol>().enabled = false;
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
             RoubouFaceMordomo = true;
-
+            dialogoMordomo.GetComponent<DialogoMordomo>().enabled = false;
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            audioSource.PlayOneShot(SomRouboDeFace);
         }
         if(RoubouFaceMordomo == true)
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
+        MordomoScript.GetComponent<RandomPatrol>().enabled = false;
 
-
+       
 
 
     }
+
 
     public void StealFaceBaronesa()
     {
@@ -196,8 +211,8 @@ public class FaceSteal : MonoBehaviour
             Instantiate(birdsPrefab, headPositionBaronesa.position, Quaternion.identity, headPositionBaronesa);
             Baronesatonta.AtivarTontura();
             BaronesaScript.GetComponent<RandomPatrol>().enabled = false;
+            audioSource.PlayOneShot(SomRouboDeFace);
 
-            
 
         }
 
