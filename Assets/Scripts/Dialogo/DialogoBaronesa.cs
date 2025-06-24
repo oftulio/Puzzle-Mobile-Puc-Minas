@@ -37,6 +37,7 @@ public class DialogoBaronesa : MonoBehaviour
     public bool rouboufacemordomo;
     public bool PodeRoubarFace;
     public bool DialogoComFaceTerminou;
+    public GameObject Chave;
     void Start()
     {
         faceSteal = PlayerRef.GetComponent<FaceSteal>();
@@ -114,6 +115,7 @@ public class DialogoBaronesa : MonoBehaviour
             boxCollider.center = new Vector3(0f, 1f, -0.01f); // Novo lugar
             PodeRoubarFace = false;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            Chave.SetActive(true);
         }
        
     }

@@ -12,6 +12,7 @@ public class ChaveColetavel : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip SomChaveColetada;
     public bool ColetouChave;
+    public GameObject Chave;
     
 
     private void Start()
@@ -45,14 +46,26 @@ public class ChaveColetavel : MonoBehaviour
     {
         if (playerPerto)
         {
-            audioSource.PlayOneShot(SomChaveColetada);
-            Debug.Log("Chave coletada!");
-            botaoColetar.SetActive(false);
-            UIManager.Instance.MostrarMensagem("Você coletou a chave da cozinha");
-            chaveCanvas.SetActive(false); // Desativa o Canvas quando o jogador sai
-            //SceneManager.LoadScene("FimFase1");
-            playerScript.TemAChave = true;
-            ColetouChave = true;
+            if (audioSource != null && Chave != null)
+            {
+                audioSource.PlayOneShot(SomChaveColetada);
+                StartCoroutine(EsperarEFazerDesativacao());
+
+                Debug.Log("Chave coletada!");
+                botaoColetar.SetActive(false);
+                UIManager.Instance.MostrarMensagem("Você coletou a chave da cozinha");
+                chaveCanvas.SetActive(false); // Desativa o Canvas quando o jogador sai
+                                              //SceneManager.LoadScene("FimFase1");
+                playerScript.TemAChave = true;
+                ColetouChave = true;
+
+            }
         }
+    }
+
+    private System.Collections.IEnumerator EsperarEFazerDesativacao()
+    {
+        yield return new WaitForSeconds(audioSource.clip.length); // Espera a duração do som
+        Chave.SetActive(false); // Desativa o objeto
     }
 }

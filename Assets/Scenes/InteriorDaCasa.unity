@@ -2141,8 +2141,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142683800}
-  - component: {fileID: 142683802}
   - component: {fileID: 142683801}
+  - component: {fileID: 142683802}
   m_Layer: 0
   m_Name: DoorPivot
   m_TagString: Untagged
@@ -2181,7 +2181,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2206,6 +2206,7 @@ MonoBehaviour:
   canvasPortaGeladeira: {fileID: 1104469814}
   chaveColetavel: {fileID: 1920411179}
   portaGeladeira: {fileID: 142683802}
+  coletouchave: 0
 --- !u!65 &143978305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4371,7 +4372,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 142683802}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PortaGeladeira, Assembly-CSharp
         m_MethodName: IsOpen
         m_Mode: 1
@@ -13459,6 +13460,7 @@ MonoBehaviour:
   rouboufacemordomo: 0
   PodeRoubarFace: 0
   DialogoComFaceTerminou: 0
+  Chave: {fileID: 1920411177}
 --- !u!1001 &817048748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13535,6 +13537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8938754205725328726, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
+      propertyPath: Coletavel
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dfcf65a7521e2541a70f76818d6ec19, type: 3}
     - target: {fileID: 8938754205725328726, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
       propertyPath: SFXSlider
       value: 
@@ -32624,8 +32630,9 @@ MonoBehaviour:
   chaveCanvas: {fileID: 1582162345}
   player: {fileID: 4107889983022029096}
   audioSource: {fileID: 1920411181}
-  SomChaveColetada: {fileID: 0}
+  SomChaveColetada: {fileID: 8300000, guid: 94fb9d79fa602a5438bd893312f8aea9, type: 3}
   ColetouChave: 0
+  Chave: {fileID: 1920411177}
 --- !u!65 &1920411180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32641,7 +32648,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -32657,9 +32664,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4e7e679f1c408d248b343dfa10f05e2c, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 94fb9d79fa602a5438bd893312f8aea9, type: 3}
+  m_Resource: {fileID: 8300000, guid: 94fb9d79fa602a5438bd893312f8aea9, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -45045,6 +45052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450653322798860}
+  - component: {fileID: 919132149405334967}
   m_Layer: 0
   m_Name: PORTA INTERNA 2 (1)
   m_TagString: Untagged
@@ -45052,6 +45060,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132149405334967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149405334966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352b4008d8ff1f84a870a99220718d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorPivot: {fileID: 142683800}
+  rotationAngle: -90
+  rotationSpeed: 2
+  RefButtonInteragir: {fileID: 309082300}
+  canvasPortaGeladeira: {fileID: 1104469814}
+  chaveColetavel: {fileID: 1920411179}
+  portaGeladeira: {fileID: 919132149405334967}
+  coletouchave: 0
 --- !u!1 &919132149487172835
 GameObject:
   m_ObjectHideFlags: 0
@@ -62799,7 +62827,7 @@ Transform:
   m_GameObject: {fileID: 4107889983022029096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9996754, z: 0, w: -0.025479078}
-  m_LocalPosition: {x: 28.38, y: 0.174, z: 16.68}
+  m_LocalPosition: {x: -43.733, y: 0.174, z: 34.292}
   m_LocalScale: {x: 0.59983, y: 1.7309394, z: 0.74271}
   m_ConstrainProportionsScale: 0
   m_Children:

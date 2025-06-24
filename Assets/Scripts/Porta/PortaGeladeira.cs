@@ -12,12 +12,14 @@ public class PortaGeladeira : MonoBehaviour
     public GameObject canvasPortaGeladeira;
     public ChaveColetavel chaveColetavel;
     public PortaGeladeira portaGeladeira;
+    public bool coletouchave;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        chaveColetavel = GetComponent<ChaveColetavel>();
-        portaGeladeira = GetComponent<PortaGeladeira>();
+        //chaveColetavel = GetComponent<ChaveColetavel>();
+        //portaGeladeira = GetComponent<PortaGeladeira>();
         targetRotation = doorPivot.rotation;
+        coletouchave = chaveColetavel.ColetouChave;
     }
 
     // Update is called once per frame
@@ -39,22 +41,26 @@ public class PortaGeladeira : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        RefButtonInteragir.SetActive(false);
-        canvasPortaGeladeira.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            RefButtonInteragir.SetActive(false);
+            canvasPortaGeladeira.SetActive(false);
+        }
+            
     }
 
     public void IsOpen()
     {
-        if (chaveColetavel.ColetouChave == true)
-        {
-            float angle = rotationAngle;
-            targetRotation = Quaternion.Euler(0, angle, 0); // Gira no eixo Y
-            portaGeladeira.GetComponent<PortaGeladeira>().enabled = false;
+        
+        
+            //float angle = rotationAngle;
+            targetRotation = Quaternion.Euler(0, -90, 0); // Gira no eixo Y
+            //portaGeladeira.GetComponent<PortaGeladeira>().enabled = false;
             RefButtonInteragir.SetActive(false);
             canvasPortaGeladeira.SetActive(false);
-        }
-        else
-            UIManager.Instance.MostrarMensagem("Você coletou a chave da cozinha");
+        
+       
+           // UIManager.Instance.MostrarMensagem("Não tem a chave da cozinha");
 
     }
 
