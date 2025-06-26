@@ -2,7 +2,7 @@
 - Project name: Puzzle-Mobile-Puc-Minas
 - Unity version: Unity 6000.0.39f1
 - Active game object:
-  - Name: DoorPivot
-  - Tag: Untagged
+  - Name: Obj6
+  - Tag: ItemPuzzle
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

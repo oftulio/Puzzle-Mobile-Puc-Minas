@@ -19,6 +19,9 @@ public class PlayerColisionGeneral : MonoBehaviour
     private ChaveColetavel chaveScript;
     public bool TemAChave = false;
 
+    public GameObject RefButtonInteragir;
+    public GameObject canvasPortaGeladeira;
+
 
     public Transform doorPivot;
     public Transform GeladeiraPivot;
@@ -74,6 +77,11 @@ public class PlayerColisionGeneral : MonoBehaviour
         {
             InteragirGeladeiraButton.SetActive(true);
         }
+        if (other.CompareTag("PortaCozinha"))
+        {
+            RefButtonInteragir.SetActive(true);
+            canvasPortaGeladeira.SetActive(true);
+        }
     }
     public void OnTriggerExit(Collider other)
     {
@@ -85,6 +93,8 @@ public class PlayerColisionGeneral : MonoBehaviour
         PanfletoDica1.SetActive(false);
         PanfletoSemChave.SetActive(false);
         InteragirGeladeiraButton.SetActive(false);
+        RefButtonInteragir.SetActive(false);
+        canvasPortaGeladeira.SetActive(false);
     }
 
     public void InteragirPanfleto1()
