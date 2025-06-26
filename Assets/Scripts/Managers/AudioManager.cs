@@ -19,10 +19,11 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("Configuracoes de Sons")]
+    public AudioClip MenuSound;
     public AudioClip Coletavel;
     public AudioClip Select;
     public AudioClip Hit;
-    private AudioSource backgroundMusicSource;
+    public AudioClip backgroundMusicMenu;
     //
     public AudioClip MouseEnter;
     public AudioClip MouseClick;
@@ -33,7 +34,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        //musicsource.clip = backgroundMusicMenu;
+        musicsource.clip = backgroundMusicMenu;
         musicsource.Play();
 
 
