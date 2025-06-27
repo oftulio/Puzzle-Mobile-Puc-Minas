@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Rendering.PostProcessing;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,8 +11,12 @@ using UnityEngine.UI;
 
 public class DialogoBaronesa : MonoBehaviour
 {
+    public NavMeshAgent agente;
+    public Transform PontoPertoBilhar;
+
     public string[] storyLinesSemFace; // Texto alternativo para quando o player NÃO tem a face
     private string[] dialogoAtual;
+    public string[] storyLinesPosPuzzleGeladeira; // Texto alternativo para quando o player NÃO tem a face
 
     public TextMeshProUGUI storyText; // Referência para o texto
 
@@ -38,9 +43,12 @@ public class DialogoBaronesa : MonoBehaviour
     public bool PodeRoubarFace;
     public bool DialogoComFaceTerminou;
     public GameObject Chave;
+    public PuzzleVerificador puzzleVerificador;
+    public GameObject PuzzleVerifica;
     void Start()
     {
         faceSteal = PlayerRef.GetComponent<FaceSteal>();
+        puzzleVerificador = PuzzleVerifica.GetComponent<PuzzleVerificador>();
         rouboufacemordomo = faceSteal.RoubouFaceMordomo;
     }
 
@@ -107,8 +115,8 @@ public class DialogoBaronesa : MonoBehaviour
             //SceneManager.LoadScene(2);
             DialogoBaronesaImage.SetActive(false);
             DialogoBaronesaText.SetActive(false);
-            Destroy(DialogoBaronesaButton);
-            BaronesaScript.GetComponent<RandomPatrol>().enabled = true;
+            DialogoBaronesaButton.SetActive(false);
+            //BaronesaScript.GetComponent<RandomPatrol>().enabled = true;
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
             DialogoTerminou = true;
             boxCollider.size = new Vector3(1.28f, 2.02f, 2.91f); // Novo tamanho
@@ -116,6 +124,16 @@ public class DialogoBaronesa : MonoBehaviour
             PodeRoubarFace = false;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             Chave.SetActive(true);
+        }
+        if (dialogoAtual == storyLinesPosPuzzleGeladeira)
+        {
+            DialogoBaronesaImage.SetActive(false);
+            DialogoBaronesaText.SetActive(false);
+            DialogoBaronesaButton.SetActive(false);
+            agente.SetDestination(PontoPertoBilhar.position); // Vai para o destino perto do bilhar
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
+            PodeRoubarFace = false;
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
         }
        
     }
@@ -134,6 +152,14 @@ public class DialogoBaronesa : MonoBehaviour
             DialogoBaronesaText.SetActive(true);
             RefInteragirButton.SetActive(false);
             dialogoAtual = storyLinesSemFace;
+        }
+
+        if (puzzleVerificador.PuzzleGeladeiraTerminou == true)
+        {
+            DialogoBaronesaImage.SetActive(true);
+            DialogoBaronesaText.SetActive(true);
+            RefInteragirButton.SetActive(false);
+            dialogoAtual = storyLinesPosPuzzleGeladeira;
         }
 
         currentLine = 0;

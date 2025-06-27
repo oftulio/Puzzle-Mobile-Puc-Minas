@@ -1,12 +1,20 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PuzzleVerificador : MonoBehaviour
 {
     public Transform[] posicoesEmOrdem; // Lista de posições corretas na ordem do puzzle
     public GameObject GeladeiraButton;
+    public AudioClip SomPuzzleConcluido;
+    public AudioSource AudioSource;
+    public PlayerColisionGeneral playerColisionGeneral;
+    public GameObject Player;
+    public bool PuzzleGeladeiraTerminou = false;
+
     void Start()
     {
         VerificarPuzzle();
+        playerColisionGeneral = Player.GetComponent<PlayerColisionGeneral>();
     }
 
     public void VerificarPuzzle()
@@ -41,9 +49,13 @@ public class PuzzleVerificador : MonoBehaviour
         if (resolvido)
         {
             Debug.Log("Puzzle Resolvido!");
-            Object.FindAnyObjectByType<QuestManager>().CompletePuzzle();
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             // Aqui você pode tocar um som, mostrar painel de vitória etc.
             Destroy(GeladeiraButton);
+            AudioSource.PlayOneShot(SomPuzzleConcluido);
+            playerColisionGeneral.FecharPuzzle();
+            UIManager.Instance.MostrarMensagem("Puzzle Concluído");
+            PuzzleGeladeiraTerminou = true;
         }
         else
         {

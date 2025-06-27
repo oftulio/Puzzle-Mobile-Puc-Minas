@@ -86,8 +86,8 @@ public class PianoManager : MonoBehaviour
             pianoPuzzle.ClosePuzzle();
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             Mordomo.SetActive(true);
-        
-        
+        UIManager.Instance.MostrarMensagem("Puzzle Concluído");
+
     }
 
     private int GetKeyIndex(string keyName)

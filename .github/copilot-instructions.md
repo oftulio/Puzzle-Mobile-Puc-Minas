@@ -2,7 +2,7 @@
 - Project name: Puzzle-Mobile-Puc-Minas
 - Unity version: Unity 6000.0.39f1
 - Active game object:
-  - Name: Obj6
-  - Tag: ItemPuzzle
+  - Name: PontoPertoDoBilhar
+  - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
