@@ -1266,6 +1266,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!82 &823481231 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7549975883898196631, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
+  m_PrefabInstance: {fileID: 5209041318057971556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824904564
 GameObject:
   m_ObjectHideFlags: 0
@@ -4567,7 +4572,7 @@ PrefabInstance:
     - target: {fileID: 8938754205725328726, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
       propertyPath: loopingSFXSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 823481231}
     - target: {fileID: 8938754205725328726, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
       propertyPath: backgroundMusicMenu
       value: 
