@@ -14683,6 +14683,10 @@ PrefabInstance:
       propertyPath: loopingSFXSource
       value: 
       objectReference: {fileID: 951899835}
+    - target: {fileID: 8938754205725328726, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
+      propertyPath: backgroundMusicMenu
+      value: 
+      objectReference: {fileID: 8300000, guid: dfdbf0198f1bb0f48a3f140dc9d60942, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
