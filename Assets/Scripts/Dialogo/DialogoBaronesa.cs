@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Rendering.PostProcessing;
+#if UNITY_EDITOR
+using UnityEditor.Rendering;
+#endif
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
