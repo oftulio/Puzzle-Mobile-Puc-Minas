@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerColisionGeneral : MonoBehaviour
 {
+    public GameObject BilharButton;
     public GameObject PanfletoPainel1;
     public GameObject PanfletoPainel2;
     public GameObject PanfletoPainel3;
@@ -82,6 +83,8 @@ public class PlayerColisionGeneral : MonoBehaviour
             RefButtonInteragir.SetActive(true);
             canvasPortaGeladeira.SetActive(true);
         }
+        if (other.CompareTag("Bilhar"))
+            BilharButton.SetActive(true);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -95,6 +98,7 @@ public class PlayerColisionGeneral : MonoBehaviour
         InteragirGeladeiraButton.SetActive(false);
         RefButtonInteragir.SetActive(false);
         canvasPortaGeladeira.SetActive(false);
+        BilharButton.SetActive(false);
     }
 
     public void InteragirPanfleto1()
