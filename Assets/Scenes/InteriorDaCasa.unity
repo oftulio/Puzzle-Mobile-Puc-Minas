@@ -14688,6 +14688,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
+--- !u!82 &817048749 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8814848031338425675, guid: cc01e13666ddc7c4693c108a4d074373, type: 3}
+  m_PrefabInstance: {fileID: 817048748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &822801728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21056,6 +21061,7 @@ GameObject:
   - component: {fileID: 1196458716}
   - component: {fileID: 1196458715}
   - component: {fileID: 1196458714}
+  - component: {fileID: 1196458720}
   m_Layer: 0
   m_Name: Baronesa
   m_TagString: Baronesa
@@ -21177,6 +21183,22 @@ Transform:
   - {fileID: 813975011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1196458720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196458713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deca096c2e828a144bee2aa5f4198710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepAudio: {fileID: 817048749}
+  footstepClips:
+  - {fileID: 8300000, guid: a7eb8e504ace6904a9d9664d27d3c5a0, type: 3}
+  - {fileID: 8300000, guid: 4e09ad920b6237745b9027909d870b15, type: 3}
 --- !u!65 &1196838208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25610,6 +25632,7 @@ GameObject:
   - component: {fileID: 1432955437}
   - component: {fileID: 1432955438}
   - component: {fileID: 1432955439}
+  - component: {fileID: 1432955440}
   m_Layer: 0
   m_Name: Mordomo
   m_TagString: Mordomo
@@ -25731,6 +25754,22 @@ MonoBehaviour:
   pontoFinal: {fileID: 1701143196}
   tempoTonto: 120
   raioMovimento: 3
+--- !u!114 &1432955440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432955432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deca096c2e828a144bee2aa5f4198710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepAudio: {fileID: 817048749}
+  footstepClips:
+  - {fileID: 8300000, guid: a7eb8e504ace6904a9d9664d27d3c5a0, type: 3}
+  - {fileID: 8300000, guid: 4e09ad920b6237745b9027909d870b15, type: 3}
 --- !u!65 &1434208151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71556,6 +71595,7 @@ GameObject:
   - component: {fileID: 3016569039956935527}
   - component: {fileID: 4252915355224787293}
   - component: {fileID: 5949970345012525305}
+  - component: {fileID: 5949970345012525306}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -86411,6 +86451,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5949970345012525306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107889983022029096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f035d9d2e47e3714486a67ab7d885f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepAudio: {fileID: 817048749}
+  footstepClips:
+  - {fileID: 8300000, guid: a7eb8e504ace6904a9d9664d27d3c5a0, type: 3}
+  - {fileID: 8300000, guid: 4e09ad920b6237745b9027909d870b15, type: 3}
 --- !u!1 &5951716709072514911
 GameObject:
   m_ObjectHideFlags: 0
