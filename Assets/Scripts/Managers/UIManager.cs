@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     public float SpeedSkyBox;
 
     public GameObject painelPauseGame;
-    public GameObject painelSettingsGame;
     [SerializeField]private GameObject gameOverUI;
 
     private void Awake()
@@ -28,7 +27,7 @@ public class UIManager : MonoBehaviour
         painelPauseGame.SetActive(true);
         painelPause.SetActive(false);
         painelMensagem.SetActive(false);
-        painelSettingsGame.SetActive(false);
+        
 
     }
     private void Update()
@@ -75,13 +74,6 @@ public class UIManager : MonoBehaviour
     public void PainelPause()
     {
         painelPauseGame.SetActive(true);
-        painelSettingsGame.SetActive(false);
-        
-    }
-    public void painelSettings()
-    {
-        painelSettingsGame.SetActive(true);
-        painelPauseGame.SetActive(false);
         
     }
 }
