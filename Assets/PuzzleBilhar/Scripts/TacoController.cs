@@ -71,33 +71,31 @@ public class TacoController : MonoBehaviour
     }
     Vector2 GetWorldPosition()
     {
-        Vector3 screenPos = Input.mousePosition;
-#if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
-        screenPos = Input.GetTouch(0).position;
+#if UNITY_EDITOR || UNITY_STANDALONE
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+#else
+        return Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 #endif
-        return Camera.main.ScreenToWorldPoint(screenPos);
     }
 
     void AtualizarTaco(Vector2 current)
     {
         Vector2 direction = dragStart - current;
-
         if (direction.magnitude < 0.05f) return;
 
-        float pullDistance = Mathf.Clamp(direction.magnitude, 0f, maxPullDistance);
-        Vector2 offset = direction.normalized * pullDistance;
+        float pullDistance = Mathf.Clamp(direction.magnitude, 0.1f, maxPullDistance);
 
-        tacoVisual.localPosition = -offset;
-        tacoVisual.right = direction; // Alinha o taco com a direção do arrastoed;
+        // move o taco para trás da bola
+        tacoVisual.localPosition = -direction.normalized * pullDistance;
+        tacoVisual.right = direction; // gira o taco para apontar na direção do arrasto
     }
 
-    void Tacar(Vector2 releasePos)
+    void Tacar(Vector2 release)
     {
-        Vector2 direction = dragStart - releasePos;
+        Vector2 direction = dragStart - release;
+        float pullDistance = Mathf.Clamp(direction.magnitude, 0.1f, maxPullDistance);
+        float force = (pullDistance / maxPullDistance) * maxForce;
 
-        if (direction.magnitude < 0.05f) return;
-
-        float force = Mathf.Clamp(direction.magnitude / maxPullDistance, 0f, 1f) * maxForce;
         bolaBranca.AddForce(direction.normalized * force, ForceMode2D.Impulse);
 
         tacoVisual.localPosition = Vector3.zero;
