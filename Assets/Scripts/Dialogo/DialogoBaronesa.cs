@@ -13,11 +13,13 @@ using UnityEngine.UI;
 
 public class DialogoBaronesa : MonoBehaviour
 {
+    public bool TerminouDialogoBilharvolta;
     public NavMeshAgent agente;
     public Transform PontoPertoBilhar;
 
+    public string[] storyLinesPosBilhar; // Texto alternativo para quando o player NÃO tem a face
     public string[] storyLinesSemFace; // Texto alternativo para quando o player NÃO tem a face
-    private string[] dialogoAtual;
+    public string[] dialogoAtual;
     public string[] storyLinesPosPuzzleGeladeira; // Texto alternativo para quando o player NÃO tem a face
 
     public TextMeshProUGUI storyText; // Referência para o texto
@@ -47,11 +49,15 @@ public class DialogoBaronesa : MonoBehaviour
     public GameObject Chave;
     public PuzzleVerificador puzzleVerificador;
     public GameObject PuzzleVerifica;
+    public GameManagerSinuca gamemanagerSinuca;
+    public GameObject GameManagerSinuca;
+
     void Start()
     {
         faceSteal = PlayerRef.GetComponent<FaceSteal>();
         puzzleVerificador = PuzzleVerifica.GetComponent<PuzzleVerificador>();
         rouboufacemordomo = faceSteal.RoubouFaceMordomo;
+        gamemanagerSinuca = GameManagerSinuca.GetComponent<GameManagerSinuca>();
     }
 
     void Update()
@@ -103,7 +109,7 @@ public class DialogoBaronesa : MonoBehaviour
     {
         if (dialogoAtual == storyLinesSemFace)
         {
-            
+
             DialogoBaronesaImage.SetActive(false);
             DialogoBaronesaText.SetActive(false);
             Debug.Log("Cutscene Finalizada sem face!");
@@ -136,8 +142,23 @@ public class DialogoBaronesa : MonoBehaviour
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
             PodeRoubarFace = false;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            gamemanagerSinuca.GetComponent<GameManagerSinuca>().enabled = true;
         }
-       
+
+        if (dialogoAtual == storyLinesPosBilhar)
+        {
+            DialogoBaronesaImage.SetActive(false);
+            DialogoBaronesaText.SetActive(false);
+            DialogoBaronesaButton.SetActive(false);
+            PlayerRef.GetComponent<FaceSteal>().enabled = true;
+            PodeRoubarFace = true;
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            TerminouDialogoBilharvolta = true;
+
+        }
+
+     
+
     }
     public void StartDialogoBaronesa()
     {
@@ -163,14 +184,20 @@ public class DialogoBaronesa : MonoBehaviour
             RefInteragirButton.SetActive(false);
             dialogoAtual = storyLinesPosPuzzleGeladeira;
         }
-
+        if (gamemanagerSinuca.TerminouBilhar == true)
+        {
+            DialogoBaronesaImage.SetActive(true);
+            DialogoBaronesaText.SetActive(true);
+            RefInteragirButton.SetActive(false);
+            dialogoAtual = storyLinesPosBilhar;
+        }
         currentLine = 0;
 
         if (dialogoAtual.Length > 0)
             StartCoroutine(TypeLine(dialogoAtual[0]));
     }
-
 }
+
 
 
 

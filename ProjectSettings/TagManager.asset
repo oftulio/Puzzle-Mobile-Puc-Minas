@@ -21,6 +21,7 @@ TagManager:
   - PortaCozinha
   - Bilhar
   - Bola
+  - BolaVermelha
   layers:
   - Default
   - TransparentFX

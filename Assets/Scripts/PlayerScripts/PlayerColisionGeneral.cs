@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerColisionGeneral : MonoBehaviour
 {
+    public DialogoBaronesa dialogoBaronesa;
+    public GameObject Baronesa;
+
     public GameObject BilharButton;
     public GameObject PanfletoPainel1;
     public GameObject PanfletoPainel2;
@@ -35,13 +38,14 @@ public class PlayerColisionGeneral : MonoBehaviour
     private Quaternion targetRotationGeladeira;
     public bool portaAbriu = false;
 
+    public GameManagerSinuca gamemanagerSinuca;
+    public GameObject GameManagerSinuca;
 
-    
     void Start()
     {
-        
+        dialogoBaronesa = Baronesa.GetComponent<DialogoBaronesa>();
         playerScript = player.GetComponent<MobileLook>();
-        
+        gamemanagerSinuca = GameManagerSinuca.GetComponent<GameManagerSinuca>();
         targetRotation = doorPivot.rotation;
         targetRotationGeladeira = GeladeiraPivot.rotation;
     }
@@ -83,7 +87,7 @@ public class PlayerColisionGeneral : MonoBehaviour
             RefButtonInteragir.SetActive(true);
             canvasPortaGeladeira.SetActive(true);
         }
-        if (other.CompareTag("Bilhar"))
+        if (other.CompareTag("Bilhar") && dialogoBaronesa.TerminouDialogoBilharvolta == true)
             BilharButton.SetActive(true);
     }
     public void OnTriggerExit(Collider other)
