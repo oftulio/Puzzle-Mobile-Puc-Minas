@@ -22,6 +22,8 @@ TagManager:
   - Bilhar
   - Bola
   - BolaVermelha
+  - Barao
+  - Banheira
   layers:
   - Default
   - TransparentFX

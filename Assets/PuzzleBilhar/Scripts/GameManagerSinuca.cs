@@ -49,6 +49,7 @@ public class GameManagerSinuca : MonoBehaviour
         UIManager.Instance.MostrarMensagem("Puzzle Concluído");
         audioSource.PlayOneShot(SomPuzzleConcluido);
         TerminouBilhar = true;
+        Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
     }
 
     public void ResetarBilhar()

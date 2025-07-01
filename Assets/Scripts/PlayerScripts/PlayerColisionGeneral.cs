@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerColisionGeneral : MonoBehaviour
 {
@@ -40,6 +41,14 @@ public class PlayerColisionGeneral : MonoBehaviour
 
     public GameManagerSinuca gamemanagerSinuca;
     public GameObject GameManagerSinuca;
+
+    public GameObject BanheiraButton;
+
+    public GameObject Barao;
+    public string nextSceneName = "Menu";
+
+    public GameObject MatarBaraoButton;
+ 
 
     void Start()
     {
@@ -89,6 +98,12 @@ public class PlayerColisionGeneral : MonoBehaviour
         }
         if (other.CompareTag("Bilhar") && dialogoBaronesa.TerminouDialogoBilharvolta == true)
             BilharButton.SetActive(true);
+
+        if (other.CompareTag("Banheira"))
+            BanheiraButton.SetActive(true);
+
+        if (other.CompareTag("Barao"))
+            MatarBaraoButton.SetActive(true);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -103,6 +118,8 @@ public class PlayerColisionGeneral : MonoBehaviour
         RefButtonInteragir.SetActive(false);
         canvasPortaGeladeira.SetActive(false);
         BilharButton.SetActive(false);
+        BanheiraButton.SetActive(false);
+        MatarBaraoButton.SetActive(false);
     }
 
     public void InteragirPanfleto1()
@@ -175,5 +192,12 @@ public class PlayerColisionGeneral : MonoBehaviour
         fecharPuzzleGeladeiraButton.SetActive(false);
         targetRotationGeladeira = Quaternion.Euler(0, 0, 0);
         GeladeiraisOpen = false;
+    }
+
+    public void MatarBarao()
+    {
+        Destroy(Barao);
+        SceneManager.LoadScene(nextSceneName);
+
     }
 }

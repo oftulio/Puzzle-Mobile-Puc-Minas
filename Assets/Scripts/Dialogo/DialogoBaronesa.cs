@@ -52,8 +52,13 @@ public class DialogoBaronesa : MonoBehaviour
     public GameManagerSinuca gamemanagerSinuca;
     public GameObject GameManagerSinuca;
 
+    public DialogoBaronesa dialogoBaronesa;
+
+    
+
     void Start()
     {
+        dialogoBaronesa = BaronesaScript.GetComponent<DialogoBaronesa>();
         faceSteal = PlayerRef.GetComponent<FaceSteal>();
         puzzleVerificador = PuzzleVerifica.GetComponent<PuzzleVerificador>();
         rouboufacemordomo = faceSteal.RoubouFaceMordomo;
@@ -143,18 +148,21 @@ public class DialogoBaronesa : MonoBehaviour
             PodeRoubarFace = false;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             gamemanagerSinuca.GetComponent<GameManagerSinuca>().enabled = true;
+            TerminouDialogoBilharvolta = true;
         }
 
         if (dialogoAtual == storyLinesPosBilhar)
         {
+            
             DialogoBaronesaImage.SetActive(false);
             DialogoBaronesaText.SetActive(false);
             DialogoBaronesaButton.SetActive(false);
             PlayerRef.GetComponent<FaceSteal>().enabled = true;
             PodeRoubarFace = true;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
-            TerminouDialogoBilharvolta = true;
-
+            BaronesaScript.GetComponent<RandomPatrol>().enabled = true;
+            dialogoBaronesa.GetComponent<DialogoBaronesa>().enabled = false;
+            Destroy(RefInteragirButton);
         }
 
      

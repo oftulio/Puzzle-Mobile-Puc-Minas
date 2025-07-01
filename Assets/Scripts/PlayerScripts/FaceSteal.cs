@@ -31,9 +31,9 @@ public class FaceSteal : MonoBehaviour
     public float anguloDeVisao = 60f;
     public string nomeCenaGameOver = "GameOver";
     public AudioSource audioSource;
-    public AudioClip SomRouboDeFace; 
-    
+    public AudioClip SomRouboDeFace;
 
+    public GameObject Barreira1, Barreira2;
 
 
     private void Start()
@@ -131,6 +131,7 @@ public class FaceSteal : MonoBehaviour
             Instantiate(birdsPrefab, headPositionJardineiro.position, Quaternion.identity, headPositionJardineiro);
             Mordomotonto.AtivarTontura();
             audioSource.PlayOneShot(SomRouboDeFace);
+            RoubarRostoButton.SetActive(false);
         }
 
 
@@ -170,6 +171,7 @@ public class FaceSteal : MonoBehaviour
             dialogoMordomo.GetComponent<DialogoMordomo>().enabled = false;
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             audioSource.PlayOneShot(SomRouboDeFace);
+            RoubarRostoButton.SetActive(false);
         }
         if(RoubouFaceMordomo == true)
             PlayerRef.GetComponent<FaceSteal>().enabled = false;
@@ -201,6 +203,9 @@ public class FaceSteal : MonoBehaviour
 
         else
         {
+            Destroy(Barreira1);
+            Destroy(Barreira2);
+
             print("aaaaaaaaaaaaaaa");
 
             playerFaceUI.sprite = nearbyEnemy.faceTexture; // Atualiza o rosto do player
@@ -212,7 +217,10 @@ public class FaceSteal : MonoBehaviour
             Baronesatonta.AtivarTontura();
             BaronesaScript.GetComponent<RandomPatrol>().enabled = false;
             audioSource.PlayOneShot(SomRouboDeFace);
-
+            Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
+            Baronesatonta.AtivarTontura();
+            RoubarRostoButton.SetActive(false);
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
 
         }
 

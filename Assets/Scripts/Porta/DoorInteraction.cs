@@ -29,6 +29,7 @@ public class DoorInteractionMobile : MonoBehaviour
 
         if (PlayerFaceManager.Instance.currentFace == requiredFace)
         {
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             SceneManager.LoadScene(nextSceneName);
             Object.FindAnyObjectByType<QuestManager>().CompleteCurrentQuest();
             Object.FindAnyObjectByType<SceneTransition>().TransitionToScene("nextSceneName");
