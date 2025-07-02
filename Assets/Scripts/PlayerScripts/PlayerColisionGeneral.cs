@@ -120,6 +120,7 @@ public class PlayerColisionGeneral : MonoBehaviour
         BilharButton.SetActive(false);
         BanheiraButton.SetActive(false);
         MatarBaraoButton.SetActive(false);
+        InteragirButtonDica.SetActive(false);
     }
 
     public void InteragirPanfleto1()

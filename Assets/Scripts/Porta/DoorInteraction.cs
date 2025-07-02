@@ -25,7 +25,7 @@ public class DoorInteractionMobile : MonoBehaviour
 
      public void OnInteract()
     {
-        if (!playerNearby) return;
+       
 
         if (PlayerFaceManager.Instance.currentFace == requiredFace)
         {

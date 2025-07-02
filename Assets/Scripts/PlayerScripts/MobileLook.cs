@@ -1,9 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MobileLook : MonoBehaviour
 {
+    private Animator animator;
     // References
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private CharacterController characterController;
@@ -31,6 +32,8 @@ public class MobileLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+
         moveCamera = true;
         movePlayer = true;
         // id = -1 means the finger is not being tracked
@@ -154,15 +157,24 @@ public class MobileLook : MonoBehaviour
 
     public void Move()
     {
-        if(movePlayer == true)
+        if (movePlayer == true)
         {
-        if (moveInput.sqrMagnitude <= moveInputDeadZone) return;
+            if (moveInput.sqrMagnitude <= moveInputDeadZone)
+            {
+                // Parado → pausa a animação
+                if (animator != null)
+                    animator.speed = 0f;
+                return;
+            }
 
-        Vector2 movementDirection = joystick.inputDirection * moveSpeed * Time.deltaTime;
-        characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
+            // Movimento
+            Vector2 movementDirection = joystick.inputDirection * moveSpeed * Time.deltaTime;
+            characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
 
+            // Movendo → ativa animação de corrida
+            if (animator != null)
+                animator.speed = 1f;
         }
-        // Don't move if the touch delta is shorter than the designated dead zone
     }
 
 }

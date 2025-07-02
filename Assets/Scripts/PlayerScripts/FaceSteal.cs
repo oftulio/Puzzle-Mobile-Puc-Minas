@@ -23,6 +23,7 @@ public class FaceSteal : MonoBehaviour
     public InimigoTonto Baronesatonta;
     public GameObject Mordomo;
     public GameObject Baronesa;
+    public GameObject Jardineiro;
     public GameObject MordomoScript;
     public GameObject BaronesaScript;
     public GameObject PlayerRef;
@@ -63,7 +64,7 @@ public class FaceSteal : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Jardineiro"))
+        if (other.CompareTag("Jardineiro") && RoubouFaceJardineiro == false)
         {
             nearbyEnemy = other.GetComponent<EnemyAI>();
             RoubarRostoButton.SetActive(true);
@@ -92,7 +93,7 @@ public class FaceSteal : MonoBehaviour
         if (other.CompareTag("Jardineiro"))
         {
             nearbyEnemy = other.GetComponent<EnemyAI>();
-            RoubarRostoButton.SetActive(true);
+            RoubarRostoButton.SetActive(false);
         }
 
         if (other.CompareTag("Baronesa"))
@@ -123,6 +124,7 @@ public class FaceSteal : MonoBehaviour
 
         else
         {
+            RoubouFaceJardineiro = true;
             playerFaceUI.sprite = nearbyEnemy.faceTexture; // Atualiza o rosto do player
             //Destroy(nearbyEnemy.gameObject); // Remove o inimigo
             //nearbyEnemy = null;
@@ -132,6 +134,10 @@ public class FaceSteal : MonoBehaviour
             Mordomotonto.AtivarTontura();
             audioSource.PlayOneShot(SomRouboDeFace);
             RoubarRostoButton.SetActive(false);
+            Jardineiro.SetActive(false);
+            MordomoScript.GetComponent<RandomPatrol>().enabled = false;
+            PlayerRef.GetComponent<FaceSteal>().enabled = false;
+            
         }
 
 
