@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Buraco : MonoBehaviour
 {
+    public GameManagerSinuca Manager;
+    public GameObject ManagerObject;
+
+    private void Start()
+    {
+        Manager = ManagerObject.GetComponent<GameManagerSinuca>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("BolaBranca"))
         {
-            GameManagerSinuca.instance.ResetarBilhar(); // se branca cair
+            Manager.ResetarBilhar(); // se branca cair
         }
         else if (other.CompareTag("BolaVermelha"))
         {
-            GameManagerSinuca.instance.Vitoria(); // se vermelha cair
+            Manager.Vitoria(); // se vermelha cair
         }
 
         Destroy(other.gameObject);

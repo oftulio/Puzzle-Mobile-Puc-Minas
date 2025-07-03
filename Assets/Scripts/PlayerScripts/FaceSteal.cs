@@ -31,6 +31,7 @@ public class FaceSteal : MonoBehaviour
     [Header("Configurações")]
     public float anguloDeVisao = 60f;
     public string nomeCenaGameOver = "GameOver";
+    public string nomeCenaGameOverInterna = "GameOverInterno";
     public AudioSource audioSource;
     public AudioClip SomRouboDeFace;
 
@@ -157,7 +158,7 @@ public class FaceSteal : MonoBehaviour
         if (angulo < anguloDeVisao)
         {
             // Está na frente → Game Over
-            SceneManager.LoadScene(nomeCenaGameOver);
+            SceneManager.LoadScene(nomeCenaGameOverInterna);
         }
 
         else
@@ -204,7 +205,7 @@ public class FaceSteal : MonoBehaviour
         if (angulo < anguloDeVisao)
         {
             // Está na frente → Game Over
-            SceneManager.LoadScene(nomeCenaGameOver);
+            SceneManager.LoadScene(nomeCenaGameOverInterna);
         }
 
         else

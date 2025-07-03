@@ -45,7 +45,7 @@ public class PlayerColisionGeneral : MonoBehaviour
     public GameObject BanheiraButton;
 
     public GameObject Barao;
-    public string nextSceneName = "Menu";
+    public string nextSceneName = "FimDoJogo";
 
     public GameObject MatarBaraoButton;
  
