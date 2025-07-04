@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject ConversarButton;
     public GameObject ImagemFundoDialogo;
     public GameObject TextoDialogo;
+    public DialogoBaronesa dialogoBaronesa;
 
     void Start()
     {
@@ -101,7 +102,7 @@ public class EnemyAI : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && dialogoBaronesa.PodeRoubarFace == false)
         {
             ConversarButton.SetActive(true);
             

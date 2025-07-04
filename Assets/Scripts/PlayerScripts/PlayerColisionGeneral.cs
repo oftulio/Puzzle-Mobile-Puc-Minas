@@ -6,7 +6,8 @@ public class PlayerColisionGeneral : MonoBehaviour
 {
     public DialogoBaronesa dialogoBaronesa;
     public GameObject Baronesa;
-
+    public AudioSource MatouBarao;
+    public AudioClip SomMatouBarao;
     public GameObject BilharButton;
     public GameObject PanfletoPainel1;
     public GameObject PanfletoPainel2;
@@ -197,6 +198,7 @@ public class PlayerColisionGeneral : MonoBehaviour
 
     public void MatarBarao()
     {
+        MatouBarao.PlayOneShot(SomMatouBarao);
         Destroy(Barao);
         SceneManager.LoadScene(nextSceneName);
 
